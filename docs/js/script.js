@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const logo = document.querySelector(".custom-logo");
-  if (logo) {
-    logo.setAttribute("href", "https://healthandlongevity.reviewnexus.blog/");
+  const logoLink = document.querySelector(".has-logo-image");
+  if (logoLink) {
+    logoLink.setAttribute("href", "https://healthandlongevity.reviewnexus.blog/");
   }
 });
