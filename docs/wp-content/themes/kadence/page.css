@@ -1,0 +1,27 @@
+
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f7f7f7; color: #333; }
+        .container { max-width: 850px; margin: 20px auto; background-color: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1); padding-top: 0; }
+        
+        /* ESTILO DO HEADER */
+        .site-header { padding: 20px 0; border-bottom: 1px solid #eee; background-color: #fff; margin: -40px -40px 30px -40px; }
+        .site-branding { text-align: center; }
+        .site-branding img { max-width: 250px; height: auto; display: inline-block; } /* Reduzido o tamanho para caber no layout */
+        
+        /* CORES DO CONTEÚDO (H2 e ÊNFASE)  */
+        h1.article-title { color: #36454F; font-size: 34px; line-height: 1.1; margin-bottom: 10px; font-weight: 700; text-align: center; }
+        h2 { color: #36454F; font-size: 24px; margin-top: 40px; padding-bottom: 5px; border-bottom: 3px solid #f0f0f0; }
+        p { margin-bottom: 25px; text-align: justify; }
+        .product-mention { font-weight: bold; color: #198754; } /* Mantido o verde para nome do produto */
+        .emphasis { font-weight: bold; color: #D64545; } /* Nova cor de destaque para alerta/importância */
+        .main-image { max-width: 100%; height: auto; display: block; margin: 25px auto 40px auto; border-radius: 6px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); }
+        
+        /* CTA BUTTON  */
+        .cta-button { display: block; width: 90%; margin: 40px auto 20px auto; padding: 22px 20px; background-color: #4CAF50; color: white; text-align: center; text-decoration: none; font-size: 26px; font-weight: bold; border-radius: 12px; box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4); transition: background-color 0.3s, transform 0.1s; }
+        .cta-button:hover { background-color: #388E3C; transform: translateY(-2px); }
+        .final-note { margin-top: 10px; padding: 20px; border-left: 5px solid #198754; background-color: #f0fff0; text-align: center; font-size: 17px; font-style: italic; color: #555; border-radius: 4px;}
+
+        /* RODAPÉ  */
+        footer { margin: 50px -40px 0 -40px; background-color: #f0f0f0; color: #6c757d; text-align: center; padding: 30px 40px; font-size: 11px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+        .footer-links a, .footer-legal-text { font-size: 12px; margin: 5px 10px; display: inline-block; color: #555; }
+        .footer-copyright { margin-top: 15px; font-size: 10px; }
+        .legal-notice { background-color: #e9ecef; padding: 20px; margin: 15px 0; border-radius: 4px; text-align: left; }
