@@ -162,7 +162,9 @@ function getDefaultOpts (simple) {
     completeHTMLDocument: {
       defaultValue: false,
       description: 'Outputs a complete html document, including `<html>`, `<head>
-<link stylesheet" href="https://healthandlongevity.reviewnexus.blog/wp-content/themes/kadence/style.css">
+
+<link rel="stylesheet" href="https://healthandlongevity.reviewnexus.blog/wp-content/themes/kadence/style.css">
+
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -3208,7 +3210,9 @@ showdown.subParser('completeHTMLDocument', function (text, options, globals) {
   }
 
   text = doctypeParsed + '<html' + lang + '>\n<head>
-<link stylesheet" href="https://healthandlongevity.reviewnexus.blog/wp-content/themes/kadence/style.css">
+
+<link rel="stylesheet" href="https://healthandlongevity.reviewnexus.blog/wp-content/themes/kadence/style.css">
+
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

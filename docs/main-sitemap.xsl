@@ -9,7 +9,9 @@
 	<xsl:template match="/">
 		<html xmlns="http://www.w3.org/1999/xhtml">
 			<head>
-<link stylesheet" href="https://healthandlongevity.reviewnexus.blog/wp-content/themes/kadence/style.css">
+
+<link rel="stylesheet" href="https://healthandlongevity.reviewnexus.blog/wp-content/themes/kadence/style.css">
+
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
