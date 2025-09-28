@@ -17,3 +17,40 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share
 what you've learned with others.
 */
+
+/* Botão CTA global */
+.cta, a.botao, button.botao, .btn {
+  background: linear-gradient(135deg, #34d058, #28a745);
+  color: #fff !important;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+  transition: all 0.25s ease;
+}
+
+/* Efeito hover */
+.cta:hover, a.botao:hover, button.botao:hover, .btn:hover {
+  background: linear-gradient(135deg, #28a745, #34d058);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+/* Trocar o texto de TODOS os botões sem mexer no HTML */
+.cta::before, a.botao::before {
+  content: "Comprar Agora";
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Esconde texto original do botão, caso exista */
+.cta {
+  font-size: 0; 
+}

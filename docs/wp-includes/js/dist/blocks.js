@@ -161,7 +161,25 @@ function getDefaultOpts (simple) {
     },
     completeHTMLDocument: {
       defaultValue: false,
-      description: 'Outputs a complete html document, including `<html>`, `<head>` and `<body>` tags',
+      description: 'Outputs a complete html document, including `<html>`, `<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id=GTM-WMWGPN3C'+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WMWGPN3C');</script>
+<!-- End Google Tag Manager -->
+` and `<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMWGPN3C"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMWGPN3C"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+` tags',
       type: 'boolean'
     },
     metadata: {
@@ -3187,7 +3205,25 @@ showdown.subParser('completeHTMLDocument', function (text, options, globals) {
     }
   }
 
-  text = doctypeParsed + '<html' + lang + '>\n<head>\n' + title + charset + metadata + '</head>\n<body>\n' + text.trim() + '\n</body>\n</html>';
+  text = doctypeParsed + '<html' + lang + '>\n<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id=GTM-WMWGPN3C'+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WMWGPN3C');</script>
+<!-- End Google Tag Manager -->
+\n' + title + charset + metadata + '</head>\n<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMWGPN3C"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMWGPN3C"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+\n' + text.trim() + '\n</body>\n</html>';
 
   text = globals.converter._dispatch('completeHTMLDocument.after', text, options, globals);
   return text;
@@ -15566,7 +15602,12 @@ function pasteHandler({
   // First of all, strip any meta tags.
   HTML = HTML.replace(/<meta[^>]+>/g, '');
   // Strip Windows markers.
-  HTML = HTML.replace(/^\s*<html[^>]*>\s*<body[^>]*>(?:\s*<!--\s*StartFragment\s*-->)?/i, '');
+  HTML = HTML.replace(/^\s*<html[^>]*>\s*<body[^>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMWGPN3C"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+]*>(?:\s*<!--\s*StartFragment\s*-->)?/i, '');
   HTML = HTML.replace(/(?:<!--\s*EndFragment\s*-->\s*)?<\/body>\s*<\/html>\s*$/i, '');
 
   // If we detect block delimiters in HTML, parse entirely as blocks.
