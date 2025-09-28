@@ -1,56 +1,23 @@
-/*!
-Theme Name: Kadence
-Theme URI: https://www.kadencewp.com/kadence-theme/
-Author: Kadence WP
-Author URI: https://www.kadencewp.com/
-Description: Kadence Theme is a lightweight yet full featured WordPress theme for creating beautiful fast loading and accessible websites, easier than ever. It features an easy to use drag and drop header and footer builder to build any type of header in minutes. It features a full library of gorgeous starter templates that are easy to modify with our intelligent global font and color controls. With extensive integration with the most popular 3rd party plugins, you can quickly build impressive ecommerce websites, course websites, business websites, and more.
-Version: 1.2.28
-License: GNU General Public License v3.0 (or later)
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
-Text Domain: kadence
-Requires at least: 6.3
-Tested up to: 6.8.2
-Tags: translation-ready, two-columns, right-sidebar, left-sidebar, footer-widgets, blog, custom-logo, custom-background, custom-menu, rtl-language-support, editor-style, threaded-comments, custom-colors, featured-images, wide-blocks, full-width-template, theme-options, e-commerce
-Requires PHP: 7.4
-
-This theme, like WordPress, is licensed under the GPL.
-Use it to make something cool, have fun, and share
-what you've learned with others.
-*/
-
-/* Botão CTA global */
-.cta, a.botao, button.botao, .btn {
-  background: linear-gradient(135deg, #34d058, #28a745);
+.cta {
+  background: linear-gradient(135deg, #34d058, #28a745) !important;
   color: #fff !important;
-  font-size: 17px;
-  font-weight: 600;
-  text-align: center;
-  padding: 14px 28px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  display: inline-block;
-  text-decoration: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
-  transition: all 0.25s ease;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  text-align: center!important;
+  padding: 14px 28px!important;
+  border: none!important;
+  border-radius: 8px!important;
+  cursor: pointer!important;
+  display: inline-block!important;
+  text-decoration: none!important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12)!important;
+  transition: all 0.25s ease!important;
 }
 
 /* Efeito hover */
-.cta:hover, a.botao:hover, button.botao:hover, .btn:hover {
-  background: linear-gradient(135deg, #28a745, #34d058);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+.cta:hover {
+  background: linear-gradient(135deg, #28a745, #34d058)!important;
+  transform: translateY(-2px)!important;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18)!important;
 }
 
-/* Trocar o texto de TODOS os botões sem mexer no HTML */
-.cta::before, a.botao::before {
-  content: "Comprar Agora";
-  font-size: 17px;
-  font-weight: 600;
-  color: #fff;
-}
-
-/* Esconde texto original do botão, caso exista */
-.cta {
-  font-size: 0; 
-}
