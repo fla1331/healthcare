@@ -5,7 +5,7 @@
         /* ESTILO DO HEADER */
         .site-header { padding: 20px 0; border-bottom: 1px solid #eee; background-color: #fff; margin: -40px -40px 30px -40px; }
         .site-branding { text-align: center; }
-        .site-branding img { max-width: 250px; height: auto; display: inline-block; } /* Reduzido o tamanho para caber no layout */
+        .site-branding img { max-width: 80px; height: auto; display: inline-block; } /* Reduzido o tamanho para caber no layout */
         
         /* CORES DO CONTEÚDO (H2 e ÊNFASE)  */
         h1.article-title { color: #36454F; font-size: 34px; line-height: 1.1; margin-bottom: 10px; font-weight: 700; text-align: center; }
