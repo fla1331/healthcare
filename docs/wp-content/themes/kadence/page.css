@@ -5,7 +5,7 @@
         /* ESTILO DO HEADER */
         .site-header { padding: 20px 0; border-bottom: 1px solid #eee; background-color: #fff; margin: -40px -40px 30px -40px; }
         .site-branding { text-align: center; }
-        .site-branding img { max-width: 80px; height: auto; display: inline-block; } /* Reduzido o tamanho para caber no layout */
+        .site-branding img { max-width: 80px; margin-top:15px; height: auto; display: inline-block; } /* Reduzido o tamanho para caber no layout */
         
         /* CORES DO CONTEÚDO (H2 e ÊNFASE)  */
         h1.article-title { color: #36454F; font-size: 34px; line-height: 1.1; margin-bottom: 10px; font-weight: 700; text-align: center; }
@@ -25,3 +25,4 @@
         .footer-links a, .footer-legal-text { font-size: 12px; margin: 5px 10px; display: inline-block; color: #555; }
         .footer-copyright { margin-top: 15px; font-size: 10px; }
         .legal-notice { background-color: #e9ecef; padding: 20px; margin: 15px 0; border-radius: 4px; text-align: left; }
+        .legal-notice p, .footer-copyright p  {text-align:center;}
