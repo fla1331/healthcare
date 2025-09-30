@@ -24,5 +24,5 @@
         footer { margin: 50px -40px 0 -40px; background-color: #f0f0f0; color: #6c757d; text-align: center; padding: 30px 40px; font-size: 11px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
         .footer-links a, .footer-legal-text { font-size: 12px; margin: 5px 10px; display: inline-block; color: #555; }
         .footer-copyright { margin-top: 15px; font-size: 10px; }
-        .legal-notice { background-color: #e9ecef; padding: 20px; margin: 15px 0; border-radius: 4px; text-align: left; }
+        .legal-notice { background-color: #e9ecef; padding: 20px; margin: 15px 0; border-radius: 4px; }
         .legal-notice p, .footer-copyright p  {text-align:center;}
