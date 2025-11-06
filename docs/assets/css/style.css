@@ -1,418 +1,411 @@
-* {
-
-margin: 0;
-
-padding: 0;
-
-box-sizing: border-box;
-
-}body {
-
-font-family: 'Open Sans', sans-serif; /* Usando uma fonte comum para fallback */
-
-line-height: 1.6;
-
-color: #333;
-
-background-color: #f4f7f6; /* Light gray background */
-
-}.container {
-
-width: 90%;
-
-max-width: 1200px;
-
-margin: 0 auto;
-
-padding: 20px 0;
-
-}/* Header */header {
-
-background-color: #2c3e50; /* Dark blue-gray */
-
-color: #fff;
-
-padding: 15px 0;
-
-text-align: center;
-
-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-
-}.site-title {
-
-font-size: 2.2em;
-
-margin: 0;
-
-}.site-title a {
-
-color: #fff;
-
-text-decoration: none;
-
-}/* Main Content Layout */main {
-
-display: flex;
-
-flex-wrap: wrap; /* Allows wrapping on smaller screens */
-
-gap: 20px;
-
-padding: 30px 0;
-
-}.content {
-
-flex: 3; /* Takes more space */
-
-min-width: 300px; /* Minimum width before wrapping */
-
-background-color: #fff;
-
-padding: 30px;
-
-border-radius: 8px;
-
-box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-
-}.sidebar {
-
-flex: 1; /* Takes less space */
-
-min-width: 250px; /* Minimum width before wrapping */
-
-background-color: #fff;
-
-padding: 20px;
-
-border-radius: 8px;
-
-box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-
-}/* Typography */h1, h2, h3 {
-
-color: #2c3e50; /* Dark blue-gray */
-
-margin-bottom: 15px;
-
-}h1 { font-size: 2.5em; }h2 { font-size: 1.8em; }h3 { font-size: 1.4em; }p {
-
-margin-bottom: 1em;
-
-}a {
-
-color: #3498db; /* Blue for links */
-
-text-decoration: none;
-
-}a:hover {
-
-text-decoration: underline;
-
-}ul {
-
-list-style-type: disc;
-
-margin-left: 20px;
-
-margin-bottom: 1em;
-
-}ol {
-
-list-style-type: decimal;
-
-margin-left: 20px;
-
-margin-bottom: 1em;
-
-}/* Images */.featured-image {
-
-max-width: 100%;
-
-height: auto;
-
-border-radius: 8px;
-
-margin-bottom: 25px;
-
-box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-
-}/* Table of Contents (TOC) */.toc {
-
-background-color: #ecf0f1; /* Light gray */
-
-border-left: 5px solid #3498db; /* Blue border */
-
-padding: 20px;
-
-margin-bottom: 30px;
-
-border-radius: 5px;
-
-}.toc h2 {
-
-color: #2c3e50;
-
-margin-top: 0;
-
-}.toc ul {
-
-list-style: none;
-
-margin: 0;
-
-padding: 0;
-
-}.toc ul li {
-
-margin-bottom: 8px;
-
-}.toc ul li a {
-
-color: #333;
-
-font-weight: normal;
-
-}.toc ul li a:hover {
-
-color: #3498db;
-
-text-decoration: none;
-
-}/* CTA Section */.cta {
-
-background-color: #e8f4f8; /* Very light blue */
-
-padding: 30px;
-
-text-align: center;
-
-border-radius: 8px;
-
-margin-top: 40px;
-
-box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-
-border: 1px solid #3498db;
-
-}.cta h2 {
-
-color: #2c3e50;
-
-margin-bottom: 20px;
-
-font-size: 2em;
-
-}.cta p {
-
-font-size: 1.1em;
-
-margin-bottom: 25px;
-
-}.btn-cta {
-
-display: inline-block;
-
-background-color: #27ae60; /* Green call to action */
-
-color: #fff;
-
-padding: 15px 30px;
-
-border-radius: 50px;
-
-text-decoration: none;
-
-font-size: 1.2em;
-
-font-weight: bold;
-
-transition: background-color 0.3s ease;
-
-box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-
-}.btn-cta:hover {
-
-background-color: #2ecc71; /* Lighter green on hover */
-
-transform: translateY(-2px);
-
-box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-
-}/* Sidebar */.sidebar h3 {
-
-margin-bottom: 20px;
-
-border-bottom: 2px solid #eee;
-
-padding-bottom: 10px;
-
-}.sidebar ul {
-
-list-style: none;
-
-margin: 0;
-
-padding: 0;
-
-}.sidebar ul li {
-
-margin-bottom: 10px;
-
-}.sidebar ul li a {
-
-color: #555;
-
-font-size: 0.95em;
-
-transition: color 0.2s ease;
-
-}.sidebar ul li a:hover {
-
-color: #3498db;
-
-}/* Footer */footer {
-
-background-color: #2c3e50; /* Dark blue-gray */
-
-color: #ecf0f1; /* Light gray */
-
-text-align: center;
-
-padding: 20px 0;
-
-margin-top: 40px;
-
-font-size: 0.9em;
-
-}footer p {
-
-margin-bottom: 10px;
-
-}.footer-nav a {
-
-color: #ecf0f1;
-
-margin: 0 10px;
-
-transition: color 0.2s ease;
-
-}.footer-nav a:hover {
-
-color: #3498db;
-
-text-decoration: underline;
-
-}/* Cookie Banner */.cookie-banner {
-
-position: fixed;
-
-bottom: 0;
-
-left: 0;
-
-width: 100%;
-
-background-color: #333;
-
-color: #fff;
-
-padding: 15px 20px;
-
-text-align: center;
-
-box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
-
-display: flex;
-
-justify-content: center;
-
-align-items: center;
-
-gap: 15px;
-
-z-index: 1000;
-
-}.cookie-banner p {
-
-margin: 0;
-
-flex-grow: 1;
-
-text-align: right;
-
-}.cookie-banner p a {
-
-color: #87CEEB; /* Light blue for cookie link */
-
-text-decoration: underline;
-
-}.cookie-banner button {
-
-background-color: #28a745; /* Green for accept */
-
-color: white;
-
-border: none;
-
-padding: 8px 15px;
-
-border-radius: 5px;
-
-cursor: pointer;
-
-font-size: 0.9em;
-
-transition: background-color 0.3s ease;
-
-}.cookie-banner button:hover {
-
-background-color: #218838;
-
-}#declineCookies {
-
-background-color: #dc3545; /* Red for decline */
-
-}#declineCookies:hover {
-
-background-color: #c82333;
-
-}/* Responsive Adjustments */@media (max-width: 768px) {
-
-main {
-
-flex-direction: column;
-
+/* --- VARIAVEIS GLOBAIS */
+:root {
+    --primary-color: #004F90; /* Azul Profundo/Marinho - Foco, Confiança */
+    --secondary-color: #38B000; /* Verde Vivo - Crescimento, CTA Principal */
+    --text-color: #333333;
+    --light-bg: #fdfdfd; /* Fundo mais branco que f7f7f7 */
+    --dark-bg: #003366; /* Azul Marinho Sólido (Header/Footer) */
+    --white: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra mais destacada */
+    --success-bg: #e5ffe0; /* Fundo sutil para sucesso/CTA */
+    --cta-shadow: 0 4px 15px rgba(56, 176, 0, 0.4);
+    --hover-link: #40c204; /* Verde para hover em links */
+}
+
+/* --- RESET & TIPOGRAFIA BASE --- */
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    line-height: 1.7;
+    color: var(--text-color);
+    background-color: var(--light-bg);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- REGRA DE ALTA ESPECIFICIDADE PARA VENCER CONFLITOS OCULTOS --- */
+/* Esta regra garante que, se o banner estiver visível (via JS), ele seja forçado a usar flex. */
+.cookie-banner[style*="display: flex"] { 
+    display: flex !important;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #002244; /* Azul Marinho mais escuro */
+    text-decoration: underline;
+}
+
+/* --- HOME PAGE --- */
+.home-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: calc(100vh - 120px);
+    padding: 20px;
+}
+
+.home-center p {
+    font-size: 1.3rem;
+    color: var(--text-color);
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+/* --- HEADER --- */
+header {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    padding: 1.2rem 0; /* Aumentado um pouco o padding */
+    box-shadow: var(--shadow-md);
+}
+header a {color:var(--white) !important;} /* Garante que links no header sejam brancos */
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Título do Site (Earnings) */
+.logo {
+    line-height: 0; 
+    margin: 0;
+}
+.logo a {
+   background-image: url('https://earnings.reviewnexus.blog/assets/img/logo.png'); 
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: left center;
+    display: block;
+    width: 220px; 
+    height: 50px;
+    text-indent: -9999px; 
+    overflow: hidden; 
+    text-decoration: none;
 }
 
 
+header nav a {
+    color: var(--white);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 500;
+}
+
+header nav a:hover {
+    text-decoration: none;
+    color: var(--hover-link) !important;
+}
+
+/* --- LAYOUT PRINCIPAL E CONTEÚDO --- */
+main.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 1rem;
+}
+
+@media (min-width: 1024px) {
+    main.container {
+        flex-direction: row;
+        gap: 3rem;
+        align-items: flex-start;
+    }
+    .content {
+        flex: 3;
+        min-width: 0;
+    }
+    .sidebar {
+        flex: 1;
+        position: sticky;
+        top: 2rem;
+        align-self: flex-start;
+    }
+}
 
 .content, .sidebar {
+    background-color: var(--white);
+    padding: 2.5rem; /* Aumentado o padding interno */
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    margin: 0;
+}
 
-flex: auto;
+/* --- HEADINGS E TIPOGRAFIA DE CONTEÚDO --- */
+.content h1 {
+    font-size: 2.5rem; /* Título mais imponente */
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    /* Destaque sutil no H1 */
+    border-bottom: 3px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
 
-width: 100%;
+.content h2 {
+    font-size: 1.8rem; /* Um pouco maior */
+    color: var(--primary-color);
+    /* Linha de destaque para H2s */
+    border-left: 5px solid var(--secondary-color);
+    padding-left: 1rem;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
 
+.content h3 {
+    font-size: 1.45rem;
+    color: var(--text-color);
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+p {
+    margin-bottom: 1.2rem; /* Mais espaçamento para melhor leitura */
+}
+
+/* --- IMAGEM DE DESTAQUE --- */
+.featured-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow-md);
+    max-width: 100%;
+    object-fit: cover;
+}
+
+/* --- TABELA DE CONTEÚDO (TOC) --- */
+.toc {
+    background-color: #f0f8ff; /* Fundo suave, levemente mais azulado */
+    border: 1px solid #cceeff;
+    padding: 1.8rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.toc h2 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-left: none; /* Remove a borda do H2 do TOC */
+    margin-top: 0;
+    padding-left: 0;
+}
+
+.toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+}
+
+.toc ul li {
+    margin-bottom: 0.5rem;
+}
+
+.toc ul ul {
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+    list-style: disc;
+    font-size: 0.95rem;
+}
+
+.toc a {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* --- LISTAS DE CONTEÚDO (UL/OL) --- */
+.content ul, .content ol {
+    padding-left: 25px;
+    margin-bottom: 1.5rem;
+}
+
+.content ul li {
+    margin-bottom: 0.7rem; /* Mais espaçamento nas listas */
+}
+
+/* --- CTA SECTION (DESTAQUE VERDE) --- */
+.cta {
+    background-color: var(--success-bg); /* Fundo suave para a seção CTA (Verde claro) */
+    border: 2px solid var(--secondary-color);
+    padding: 3rem; /* Aumentado o padding */
+    border-radius: 12px;
+    text-align: center;
+    margin: 3.5rem 0;
+    box-shadow: var(--shadow-md);
+}
+
+.cta h2 {
+    color: var(--text-color);
+    border-left: none;
+    margin-top: 0;
+    font-size: 2.0rem; /* Mais destaque */
+}
+
+.btn-cta {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.2rem 2.5rem; /* Maior e mais clicável */
+    border-radius: 10px; /* Bordas mais suaves */
+    font-size: 1.2rem;
+    font-weight: 800; /* Mais negrito */
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    margin-top: 1.5rem;
+    box-shadow: var(--cta-shadow); /* Sombra customizada com o novo verde */
+    letter-spacing: 0.5px;
+}
+.btn-cta:hover {
+    transform: translateY(-3px); /* Efeito 3D mais pronunciado */
+    box-shadow: 0 8px 25px rgba(56, 176, 0, 0.6);
+    color: var(--white) !important;
+    text-decoration: none !important;
+    background: #40c204 !important;
+}
+img {max-width: 100%;}
+
+/* --- FOOTER (RODAPÉ SÓLIDO AZUL MARINHO) --- */
+footer {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    text-align: center;
+    padding: 1.8rem 0; /* Mais padding */
+    font-size: 0.95rem;
+    margin-top: 3rem;
+}
+
+footer a {
+    color: var(--white) !important;
+    margin: 0 0.8rem;
+    opacity: 0.8;
+}
+footer a:hover {
+    opacity: 1;
+    text-decoration: underline;
+     color: var(--hover-link) !important;
+}
+
+/* --- AVALIAÇÃO VISUAL DE ESTRELAS (Para o bloco de estrelas simples) --- */
+.content div[style*="color: gold;"] {
+    color: #FFD700 !important; /* Dourado puro para estrelas */
 }
 
 
+/* --- TABELA DE PRÓS E CONTRAS (Com destaque na cor primária) --- */
+.content table thead tr {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
 
+
+/* Ajustes de Cookie Banner */
 .cookie-banner {
-
-flex-direction: column;
-
-padding: 15px 10px;
-
-gap: 10px;
-
+    position: fixed;
+    bottom: 0; /* Fixa na parte inferior */
+    left: 0;
+    width: 100%;
+    /* Fundo escuro e opaco (azul marinho) para ser profissional */
+    background-color: rgba(0, 51, 102, 0.95); /* var(--dark-bg) com transparência */
+    color: var(--white);
+    padding: 1rem 0; /* Padding vertical, controle horizontal no container */
+    
+    /* Configuração Flexbox para alinhar conteúdo e botões */
+    display: none; /* <--- IMPORTANTE: DEIXE 'none' AQUI, MAS O JS VAI MUDAR PARA FLEX! */
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite quebrar em telas pequenas */
+    
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999; /* Garante que fique acima de tudo */
+    font-size: 0.9rem;
+    gap: 1rem; /* Espaçamento entre os elementos */
 }
 
-
+/* Garante que o conteúdo fique dentro do limite do site */
+.cookie-banner > * {
+    max-width: 1200px;
+    padding: 0 1rem;
+}
 
 .cookie-banner p {
-
-text-align: center;
-
-margin-bottom: 10px;
-
+    margin: 0;
+    flex-grow: 1; /* Permite que o texto ocupe o máximo de espaço */
+    text-align: left;
 }
 
+.cookie-banner a {
+    color: var(--secondary-color); /* Destaque em Verde Crescimento */
+    text-decoration: underline;
+}
+
+/* Botões */
+.cookie-banner button {
+    /* Use var(--secondary-color) para o botão principal (Accept) */
+    /* E var(--primary-color) para o botão secundário (Decline) */
+    
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 600;
+    white-space: nowrap; /* Impede que o texto do botão quebre */
+}
+
+/* Botão de Aceitar (Primário - Crescimento) */
+#acceptCookies {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    order: 3; /* Coloca o botão Accept por último */
+}
+#acceptCookies:hover {
+    background-color: #267900; /* Verde mais escuro no hover */
+}
+
+/* Botão de Recusar (Secundário - Confiança/Contraste) */
+#declineCookies {
+    background-color: var(--primary-color);
+    color: var(--white);
+    order: 4; /* Coloca o botão Decline depois do Accept */
+}
+#declineCookies:hover {
+    background-color: #002244; /* Azul Marinho mais escuro */
+}
+
+/* Ajuste para telas muito pequenas */
+@media (max-width: 600px) {
+    .cookie-banner {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+    .cookie-banner p {
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+    .cookie-banner button {
+        width: 100%;
+        margin: 0.2rem 0;
+    }
+}
