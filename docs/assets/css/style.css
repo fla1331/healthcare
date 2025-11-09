@@ -383,13 +383,13 @@ footer a:hover {
 
 /* Botão de Recusar (Secundário - Confiança/Contraste) */
 #declineCookies {
-    border: 1px solid #666;
+    background-color: var(--secondary-color);
     color: var(--white);
     order: 4; /* Coloca o botão Decline depois do Accept */
     margin-right: 10px;
 }
 #declineCookies:hover {
-    
+    background-color: #267900; /* Verde mais escuro no hover */
 }
 
 /* Ajuste para telas muito pequenas */
