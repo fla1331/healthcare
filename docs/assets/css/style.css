@@ -4,7 +4,7 @@
     --secondary-color: #38B000; /* Verde Vivo - Crescimento, CTA Principal */
     --text-color: #333333;
     --light-bg: #f2f2f2; /* Fundo mais branco que f7f7f7 */
-    --dark-bg: #7fc940; /* Azul Marinho Sólido (Header/Footer) */
+    --dark-bg: #38b000 /* Azul Marinho Sólido (Header/Footer) */
     --white: #ffffff;
     --border-color: #e2e8f0;
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -303,7 +303,7 @@ footer a {
 footer a:hover {
     opacity: 1;
     text-decoration: underline;
-     color: var(--hover-link) !important;
+    
 }
 
 /* --- AVALIAÇÃO VISUAL DE ESTRELAS (Para o bloco de estrelas simples) --- */
