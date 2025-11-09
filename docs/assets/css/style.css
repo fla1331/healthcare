@@ -3,7 +3,7 @@
     --primary-color: #1A202C; /* Azul Profundo/Marinho - Foco, Confiança */
     --secondary-color: #38B000; /* Verde Vivo - Crescimento, CTA Principal */
     --text-color: #333333;
-    --light-bg: #fdfdfd; /* Fundo mais branco que f7f7f7 */
+    --light-bg: #f2f2f2; /* Fundo mais branco que f7f7f7 */
     --dark-bg: #7fc940; /* Azul Marinho Sólido (Header/Footer) */
     --white: #ffffff;
     --border-color: #e2e8f0;
@@ -68,7 +68,7 @@ a:hover {
 
 /* --- HEADER --- */
 header {
-    background-color: var(--dark-bg);
+    background-color: var(--light-bg);
     color: var(--white);
     padding: 1.2rem 0; /* Aumentado um pouco o padding */
     box-shadow: var(--shadow-md);
@@ -76,7 +76,7 @@ header {
 header a {color:var(--white) !important;} /* Garante que links no header sejam brancos */
 header .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
