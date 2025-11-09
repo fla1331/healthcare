@@ -42,12 +42,11 @@ a {
     text-decoration: none;
     transition: color 0.3s;
 }
-.main-nav {display:none;}
 a:hover {
     color: #002244; /* Azul Marinho mais escuro */
     text-decoration: underline;
 }
-
+.main-nav {display: none;}
 /* --- HOME PAGE --- */
 .home-center {
     display: flex;
