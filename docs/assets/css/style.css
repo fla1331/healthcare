@@ -4,7 +4,7 @@
     --secondary-color: #38B000; /* Verde Vivo - Crescimento, CTA Principal */
     --text-color: #333333;
     --light-bg: #f2f2f2; /* Fundo mais branco que f7f7f7 */
-    --dark-bg: #38b000 /* Azul Marinho Sólido (Header/Footer) */
+    --dark-bg: #38b000; /* Azul Marinho Sólido (Header/Footer) */
     --white: #ffffff;
     --border-color: #e2e8f0;
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -194,7 +194,7 @@ p {
 
 /* --- TABELA DE CONTEÚDO (TOC) --- */
 .toc {
-    background-color: #f0f8ff; /* Fundo suave, levemente mais azulado */
+    background-color:var(--success-bg); /* Fundo suave para o TOC */
     border: 1px solid #cceeff;
     padding: 1.8rem;
     border-radius: 10px;
@@ -383,13 +383,13 @@ footer a:hover {
 
 /* Botão de Recusar (Secundário - Confiança/Contraste) */
 #declineCookies {
-    background-color: var(--primary-color);
+    border: 1px solid #666;
     color: var(--white);
     order: 4; /* Coloca o botão Decline depois do Accept */
     margin-right: 10px;
 }
 #declineCookies:hover {
-    background-color: #002244; /* Azul Marinho mais escuro */
+    
 }
 
 /* Ajuste para telas muito pequenas */
