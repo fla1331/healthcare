@@ -4,55 +4,55 @@ const disclaimerTexts = {
     // Português (pt, pt-PT)
     'pt': {
         title: 'Aviso de Conteúdo Crítico:',
-        text: 'Este artigo é uma <strong>análise de pesquisa de mercado e feedback de consumidores</strong> sobre o produto em questão. Ele não substitui o diagnóstico ou aconselhamento de um médico ou nutricionista. Sempre consulte um profissional de saúde qualificado antes de iniciar qualquer tratamento.'
+        text: 'Este artigo é uma <strong>análise de pesquisa de mercado e feedback de consumidores</strong> sobre o produto em questão. Ele não substitui o diagnóstico ou aconselhamento de um médico ou nutricionista. **Sempre consulte um profissional de saúde qualificado antes de iniciar qualquer tratamento.**'
     },
     // Inglês (en, en-US)
     'en': {
         title: 'Critical Content Warning:',
-        text: 'This article is a <strong>market research and consumer feedback analysis</strong> about the product in question. It does not replace the diagnosis or advice of a doctor or nutritionist. Always consult a qualified health professional before starting any dietary supplement.'
+        text: 'This article is a <strong>market research and consumer feedback analysis</strong> about the product in question. It does not replace the diagnosis or advice of a doctor or nutritionist. **Always consult a qualified health professional before starting any dietary supplement.**'
     },
     // Espanhol (es, es-ES)
     'es': {
         title: 'Advertencia de Contenido Crítico:',
-        text: 'Este artículo es un <strong>análisis de investigación de mercado y comentarios de consumidores</strong> sobre el producto en cuestión. No reemplaza el diagnóstico ni el consejo de un médico o nutricionista. Consulte siempre a un profesional de la salud calificado antes de comenzar cualquier suplemento dietético.'
+        text: 'Este artículo es un <strong>análisis de investigación de mercado y comentarios de consumidores</strong> sobre el producto en cuestión. No reemplaza el diagnóstico ni el consejo de un médico o nutricionista. **Consulte siempre a un profesional de la salud calificado antes de comenzar cualquier suplemento dietético.**'
     },
     // Francês (fr, fr-FR)
     'fr': {
         title: 'Avertissement de Contenu Critique:',
-        text: 'Cet article est une <strong>analyse de recherche de marché et de commentaires de consommateurs</strong> concernant le produit en question. Il ne remplace pas le diagnostic ou les conseils d\'un médecin ou d\'un nutritionniste. Consultez toujours un professionnel de la santé qualifié avant de commencer tout supplément alimentaire.'
+        text: 'Cet article est une <strong>analyse de recherche de marché et de commentaires de consommateurs</strong> concernant le produit en question. Il ne remplace pas le diagnostic ou les conseils d\'un médecin ou d\'un nutritionniste. **Consultez toujours un professionnel de la santé qualifié avant de commencer tout supplément alimentaire.**'
     },
     // Alemão (de, de-DE, de-CH, de-AT)
     'de': {
         title: 'Wichtiger Hinweis zum Inhalt:',
-        text: 'Dieser Artikel ist eine <strong>Marktforschungs- und Verbraucher-Feedback-Analyse</strong> über das betreffende Produkt. Er ersetzt weder die Diagnose noch den Rat eines Arztes oder Ernährungsberaters. Konsultieren Sie immer einen qualifizierten Gesundheitsberater, bevor Sie mit Nahrungsergänzungsmitteln beginnen.'
+        text: 'Dieser Artikel ist eine <strong>Marktforschungs- und Verbraucher-Feedback-Analyse</strong> über das betreffende Produkt. Er ersetzt weder die Diagnose noch den Rat eines Arztes oder Ernährungsberaters. **Konsultieren Sie immer einen qualifizierten Gesundheitsberater, bevor Sie mit Nahrungsergänzungsmitteln beginnen.**'
     },
     // Italiano (it, it-IT)
     'it': {
         title: 'Avviso di Contenuto Critico:',
-        text: 'Questo articolo è un\'<strong>analisi di ricerca di mercato e feedback dei consumatori</strong> sul prodotto in questione. Non sostituisce la diagnosi o il consiglio di un medico o nutrizionista. Consultare sempre un professionista sanitario qualificato prima di iniziare qualsiasi integratore alimentare.'
+        text: 'Questo articolo è un\'<strong>analisi di ricerca di mercato e feedback dei consumatori</strong> sul prodotto in questione. Non sostituisce la diagnosi o il consiglio di un medico o nutrizionista. **Consultare sempre un professionista sanitario qualificato prima di iniziare qualsiasi integratore alimentare.**'
     },
     // Finlandês (fi)
     'fi': {
         title: 'Kriittinen sisältövaroitus:',
-        text: 'Tämä artikkeli on kyseistä tuotetta koskeva <strong>markkinatutkimus ja kuluttajapalautteen analyysi</strong>. Se ei korvaa lääkärin tai ravitsemusterapeutin diagnoosia tai neuvoja. Ota aina yhteyttä pätevään terveydenhuollon ammattilaiseen ennen kuin aloitat minkään ravintolisän käytön.'
+        text: 'Tämä artikkeli on kyseistä tuotetta koskeva <strong>markkinatutkimus ja kuluttajapalautteen analyysi</strong>. Se ei korvaa lääkärin tai ravitsemusterapeutin diagnoosia tai neuvoja. **Ota aina yhteyttä pätevään terveydenhuollon ammattilaiseen ennen kuin aloitat minkään ravintolisän käytön.**'
     },
     // Holandês (nl, nl-NL)
     'nl': {
         title: 'Kritieke inhoudswaarschuwing:',
-        text: 'Dit artikel is een <strong>marktonderzoek en consumentenfeedbackanalyse</strong> over het betreffende product. Het vervangt niet de diagnose of het advies van een arts of voedingsdeskundige. Raadpleeg altijd een gekwalificeerde gezondheidsdeskundige voordat u met een voedingssupplement begint.'
+        text: 'Dit artikel is een <strong>marktonderzoek en consumentenfeedbackanalyse</strong> over het betreffende product. Het vervangt niet de diagnose of het advies van een arts of voedingsdeskundige. **Raadpleeg altijd een gekwalificeerde gezondheidsdeskundige voordat u met een voedingssupplement begint.**'
     },
     // Sueco (sv, sv-SE)
     'sv': {
         title: 'Kritisk innehållsvarning:',
-        text: 'Denna artikel är en <strong>marknadsundersökning och konsumentfeedbackanalys</strong> om den aktuella produkten. Den ersätter inte diagnosen eller råd från en läkare eller nutritionist. Rådfråga alltid en kvalificerad hälso- och sjukvårdspersonal innan du påbörjar ett kosttillskott.'
+        text: 'Denna artikel är en <strong>marknadsundersökning och konsumentfeedbackanalys</strong> om den aktuella produkten. Den ersätter inte diagnosen eller råd från en läkare eller nutritionist. **Rådfråga alltid en kvalificerad hälso- och sjukvårdspersonal innan du påbörjar ett kosttillskott.**'
     }
 };
 
-/
-  Injeta o disclaimer E-E-A-T específico logo após o H1.
-  O disclaimer só é injetado se um <h1> for encontrado, o que
-  deve restringir a exibição a artigos e páginas de conteúdo.
- /
+/**
+ * Injeta o disclaimer E-E-A-T específico logo após o H1.
+ * O disclaimer só é injetado se um <h1> for encontrado, o que
+ * deve restringir a exibição a artigos e páginas de conteúdo.
+ */
 function injectEEATDisclaimer() {
     const firstH1 = document.querySelector('h1');
     
