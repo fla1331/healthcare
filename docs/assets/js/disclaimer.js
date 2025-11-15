@@ -30,6 +30,16 @@ const disclaimerTexts = {
             text: 'La información en este sitio web es solo para fines informativos. Consulte siempre a un profesional de la salud calificado antes de tomar cualquier decisión relacionada con la salud.',
             button: 'Entendido'
         }
+    },
+     // De (de)
+    'de': {
+        title: 'Critical Content Warning German:',
+        text: 'This article is a <strong>market research and consumer feedback analysis</strong> about the product in question. It does not replace the diagnosis or advice of a doctor or nutritionist. <strong>Always consult a qualified health professional before starting any dietary supplement.</strong>',
+        banner: {
+            title: '⚠️ Important Health Notice',
+            text: 'The information on this website is for informational purposes only. Always consult a qualified healthcare professional before making any health-related decisions.',
+            button: 'I Understand'
+        }
     }
     // ... (mantenha os outros idiomas do seu script original)
 };
