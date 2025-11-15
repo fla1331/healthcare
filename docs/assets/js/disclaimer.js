@@ -3,45 +3,94 @@
 const disclaimerTexts = {
     // Português (pt, pt-PT)
     'pt': {
-        title: 'Aviso de Conteúdo Informativo:',
-        text: 'Este artigo é uma <strong>análise de pesquisa de mercado e feedback de consumidores</strong> sobre o produto em questão. Ele não substitui o diagnóstico ou aconselhamento de um médico ou nutricionista. <strong>Sempre consulte um profissional de saúde qualificado antes de iniciar qualquer tratamento.</strong>',
+        title: 'Orientações:',
+        text: 'Material informativo baseado em estudos. Para prescrições e tratamentos, busque orientação médica profissional.',
         banner: {
-            title: '⚠️ Aviso Importante sobre Saúde',
-            text: 'As informações contidas neste site têm caráter meramente informativo. Consulte sempre um profissional de saúde qualificado antes de tomar qualquer decisão sobre sua saúde.',
+            title: '⚠️ Aviso de Saúde:',
+            text: 'As informações aqui são educativas. Sempre consulte um profissional antes de qualquer decisão.',
             button: 'Entendi'
         }
     },
-    // Inglês (en, en-US)
+    // Inglês (en, en-US, en-GB, etc)
     'en': {
-        title: 'Critical Content Warning:',
-        text: 'This article is a <strong>market research and consumer feedback analysis</strong> about the product in question. It does not replace the diagnosis or advice of a doctor or nutritionist. <strong>Always consult a qualified health professional before starting any dietary supplement.</strong>',
+        title: 'Guidance:',
+        text: 'Informational material based on studies. For prescriptions and treatments, seek professional medical guidance.',
         banner: {
-            title: '⚠️ Important Health Notice',
-            text: 'The information on this website is for informational purposes only. Always consult a qualified healthcare professional before making any health-related decisions.',
+            title: '⚠️ Health Notice:',
+            text: 'The information here is educational. Always consult a professional before any decision.',
             button: 'I Understand'
         }
     },
-    // Outros idiomas (mantenha conforme seu script original)
+    // Espanhol (es, es-ES, es-MX)
     'es': {
-        title: 'Advertencia de Contenido Crítico:',
-        text: 'Este artículo es un <strong>análisis de investigación de mercado y comentarios de consumidores</strong> sobre el producto en cuestión. No reemplaza el diagnóstico ni el consejo de un médico o nutricionista. <strong>Consulte siempre a un profesional de la salud calificado antes de comenzar cualquier suplemento dietético.</strong>',
+        title: 'Orientaciones:',
+        text: 'Material informativo basado en estudios. Para prescripciones y tratamientos, busque orientación médica profesional.',
         banner: {
-            title: '⚠️ Aviso Importante de Salud',
-            text: 'La información en este sitio web es solo para fines informativos. Consulte siempre a un profesional de la salud calificado antes de tomar cualquier decisión relacionada con la salud.',
+            title: '⚠️ Aviso de Salud:',
+            text: 'La información aquí es educativa. Siempre consulte a un profesional antes de cualquier decisión.',
             button: 'Entendido'
         }
     },
-     // De (de)
-    'de': {
-        title: 'Critical Content Warning German:',
-        text: 'This article is a <strong>market research and consumer feedback analysis</strong> about the product in question. It does not replace the diagnosis or advice of a doctor or nutritionist. <strong>Always consult a qualified health professional before starting any dietary supplement.</strong>',
+    // Francês (fr, fr-FR, fr-CA)
+    'fr': {
+        title: 'Conseils:',
+        text: 'Matériel informationnel basé sur des études. Pour les ordonnances et traitements, consultez un médecin professionnel.',
         banner: {
-            title: '⚠️ Important Health Notice',
-            text: 'The information on this website is for informational purposes only. Always consult a qualified healthcare professional before making any health-related decisions.',
-            button: 'I Understand'
+            title: '⚠️ Avis de Santé:',
+            text: 'Les informations ici sont éducatives. Consultez toujours un professionnel avant toute décision.',
+            button: 'J\'ai compris'
+        }
+    },
+    // Alemão (de, de-DE, de-AT, de-CH)
+    'de': {
+        title: 'Anleitungen:',
+        text: 'Informationsmaterial basierend auf Studien. Für Rezepte und Behandlungen suchen Sie professionelle medizinische Beratung.',
+        banner: {
+            title: '⚠️ Gesundheitshinweis:',
+            text: 'Die Informationen hier sind lehrreich. Konsultieren Sie immer einen Fachmann vor einer Entscheidung.',
+            button: 'Verstanden'
+        }
+    },
+    // Italiano (it, it-IT)
+    'it': {
+        title: 'Linee Guida:',
+        text: 'Materiale informativo basato su studi. Per prescrizioni e trattamenti, cercare una guida medica professionale.',
+        banner: {
+            title: '⚠️ Avviso di Salute:',
+            text: 'Le informazioni qui sono educative. Consultare sempre un professionista prima di qualsiasi decisione.',
+            button: 'Ho capito'
+        }
+    },
+    // Holandês (nl, nl-NL)
+    'nl': {
+        title: 'Richtlijnen:',
+        text: 'Informatief materiaal gebaseerd op studies. Voor recepten en behandelingen, zoek professionele medische begeleiding.',
+        banner: {
+            title: '⚠️ Gezondheidsadvies:',
+            text: 'De informatie hier is educatief. Raadpleeg altijd een professional voor een beslissing.',
+            button: 'Ik begrijp het'
+        }
+    },
+    // Sueco (sv, sv-SE)
+    'sv': {
+        title: 'Riktlinjer:',
+        text: 'Informationsmaterial baserat på studier. För recept och behandlingar, sök professionell medicinsk vägledning.',
+        banner: {
+            title: '⚠️ Hälsoinformation:',
+            text: 'Informationen här är utbildande. Konsultera alltid en professionell före beslut.',
+            button: 'Jag förstår'
+        }
+    },
+    // Finlandês (fi)
+    'fi': {
+        title: 'Ohjeet:',
+        text: 'Tutkimuksiin perustuvaa informatiivista materiaalia. Reseptejä ja hoitoja varten etsi ammattimaista lääketieteellistä ohjausta.',
+        banner: {
+            title: '⚠️ Terveysvaroitus:',
+            text: 'Täällä olevat tiedot ovat opetuksellisia. Konsultoi aina ammattilaista ennen päätöksen tekemistä.',
+            button: 'Ymmärrän'
         }
     }
-    // ... (mantenha os outros idiomas do seu script original)
 };
 
 /**
@@ -106,9 +155,6 @@ function createTopBanner(content) {
     // Event listener para fechar o banner
     document.getElementById('close-banner-btn').addEventListener('click', function() {
         closeBanner();
-        
-        // Efeito hover removido - não é mais necessário
-        this.style.background = 'rgba(255,255,255,0.2)';
     });
 
     // Efeitos hover
@@ -190,7 +236,7 @@ function injectEEATDisclaimer() {
     
     disclaimerDiv.style.cssText = `
         padding: 16px; 
-        background-color: #fef9c3 ;
+        background-color: #fef9c3;
         border-left: 4px solid #eab308; 
         border-radius: 6px; 
         margin: 24px 0; 
@@ -201,8 +247,8 @@ function injectEEATDisclaimer() {
 
     disclaimerDiv.innerHTML = `
         <div style="display: flex; align-items: flex-start;">
-            <div style="flex-shrink: 0; color: #a16207 margin-top: 2px;">
-                <svg width="24" height="24" fill="none" stroke="#a16207" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <div style="flex-shrink: 0; color: #a16207; margin-top: 2px;">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.398 16c-.77 1.333.192 3 1.732 3z"></path>
                 </svg>
             </div>
