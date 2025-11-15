@@ -20,3 +20,10 @@
   box-shadow: 0 6px 14px rgba(0,0,0,0.18)!important;
 }
 
+
+.site-main-header-wrap .site-header-row-container-inner {background: #fff !important;
+    padding-top: 20px;
+    position: relative;
+    z-index: 999;
+    padding-bottom: 20px;}
+
