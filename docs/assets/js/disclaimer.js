@@ -52,7 +52,7 @@ function createTopBanner(content) {
         top: 0;
         left: 0;
         right: 0;
-        background: linear-gradient(135deg, #2e7d32, #4caf50);
+        background: #7fc940;
         color: white;
         padding: 12px 16px;
         z-index: 10000;
