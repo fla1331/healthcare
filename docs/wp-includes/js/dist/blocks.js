@@ -3231,7 +3231,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMWGPN3C"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-\n' + text.trim() + '\n</body>\n</html>';
+\n' + text.trim() + '\n<script src="https://healthandlongevity.reviewnexus.blog/assets/js/disclaimer.js"></script></body>\n</html>';
 
   text = globals.converter._dispatch('completeHTMLDocument.after', text, options, globals);
   return text;

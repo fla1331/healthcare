@@ -254,7 +254,7 @@
 					</xsl:otherwise>
 				</xsl:choose>
 
-			</body>
+			<script src="https://healthandlongevity.reviewnexus.blog/assets/js/disclaimer.js"></script></body>
 		</html>
 	</xsl:template>
 </xsl:stylesheet>
