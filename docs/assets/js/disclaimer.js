@@ -192,7 +192,7 @@ function injectEEATDisclaimer() {
     disclaimerDiv.innerHTML = `
         <div style="display: flex; align-items: flex-start;">
             <div style="flex-shrink: 0; color: #a16207 margin-top: 2px;">
-                <svg width="24" height="24" fill="#a16207" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg width="24" height="24" fill="none" stroke="#a16207" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.398 16c-.77 1.333.192 3 1.732 3z"></path>
                 </svg>
             </div>
