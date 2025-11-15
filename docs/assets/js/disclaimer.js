@@ -4,7 +4,7 @@ const disclaimerTexts = {
     // Português (pt, pt-PT)
     'pt': {
         title: 'Aviso de Conteúdo Informativo:',
-        text: 'Este artigo é uma <strong>análise de pesquisa de mercado e feedback de consumidores</strong> sobre o produto em questão. Ele não substitui o diagnóstico ou aconselhamento de um médico ou nutricionista. **Sempre consulte um profissional de saúde qualificado antes de iniciar qualquer tratamento.**',
+        text: 'Este artigo é uma <strong>análise de pesquisa de mercado e feedback de consumidores</strong> sobre o produto em questão. Ele não substitui o diagnóstico ou aconselhamento de um médico ou nutricionista. <strong>Sempre consulte um profissional de saúde qualificado antes de iniciar qualquer tratamento.</strong>',
         banner: {
             title: '⚠️ Aviso Importante sobre Saúde',
             text: 'As informações contidas neste site têm caráter meramente informativo. Consulte sempre um profissional de saúde qualificado antes de tomar qualquer decisão sobre sua saúde.',
@@ -14,83 +14,24 @@ const disclaimerTexts = {
     // Inglês (en, en-US)
     'en': {
         title: 'Critical Content Warning:',
-        text: 'This article is a <strong>market research and consumer feedback analysis</strong> about the product in question. It does not replace the diagnosis or advice of a doctor or nutritionist. **Always consult a qualified health professional before starting any dietary supplement.**',
+        text: 'This article is a <strong>market research and consumer feedback analysis</strong> about the product in question. It does not replace the diagnosis or advice of a doctor or nutritionist. <strong>Always consult a qualified health professional before starting any dietary supplement.</strong>',
         banner: {
             title: '⚠️ Important Health Notice',
             text: 'The information on this website is for informational purposes only. Always consult a qualified healthcare professional before making any health-related decisions.',
             button: 'I Understand'
         }
     },
-    // Espanhol (es, es-ES)
+    // Outros idiomas (mantenha conforme seu script original)
     'es': {
         title: 'Advertencia de Contenido Crítico:',
-        text: 'Este artículo es un <strong>análisis de investigación de mercado y comentarios de consumidores</strong> sobre el producto en cuestión. No reemplaza el diagnóstico ni el consejo de un médico o nutricionista. **Consulte siempre a un profesional de la salud calificado antes de comenzar cualquier suplemento dietético.**',
+        text: 'Este artículo es un <strong>análisis de investigación de mercado y comentarios de consumidores</strong> sobre el producto en cuestión. No reemplaza el diagnóstico ni el consejo de un médico o nutricionista. <strong>Consulte siempre a un profesional de la salud calificado antes de comenzar cualquier suplemento dietético.</strong>',
         banner: {
             title: '⚠️ Aviso Importante de Salud',
             text: 'La información en este sitio web es solo para fines informativos. Consulte siempre a un profesional de la salud calificado antes de tomar cualquier decisión relacionada con la salud.',
             button: 'Entendido'
         }
-    },
-    // Francês (fr, fr-FR)
-    'fr': {
-        title: 'Avertissement de Contenu Critique:',
-        text: 'Cet article est une <strong>analyse de recherche de marché et de commentaires de consommateurs</strong> concernant le produit en question. Il ne remplace pas le diagnostic ou les conseils d\'un médecin ou d\'un nutritionniste. **Consultez toujours un professionnel de la santé qualifié avant de commencer tout supplément alimentaire.**',
-        banner: {
-            title: '⚠️ Avis Important sur la Santé',
-            text: 'Les informations sur ce site web sont à titre informatif uniquement. Consultez toujours un professionnel de la santé qualifié avant de prendre toute décision concernant votre santé.',
-            button: 'J\'ai compris'
-        }
-    },
-    // Alemão (de, de-DE, de-CH, de-AT)
-    'de': {
-        title: 'Wichtiger Hinweis zum Inhalt:',
-        text: 'Dieser Artikel ist eine <strong>Marktforschungs- und Verbraucher-Feedback-Analyse</strong> über das betreffende Produkt. Er ersetzt weder die Diagnose noch den Rat eines Arztes oder Ernährungsberaters. **Konsultieren Sie immer einen qualifizierten Gesundheitsberater, bevor Sie mit Nahrungsergänzungsmitteln beginnen.**',
-        banner: {
-            title: '⚠️ Wichtiger Gesundheitshinweis',
-            text: 'Die Informationen auf dieser Website dienen nur zu Informationszwecken. Konsultieren Sie immer einen qualifizierten Gesundheitsberater, bevor Sie gesundheitsbezogene Entscheidungen treffen.',
-            button: 'Verstanden'
-        }
-    },
-    // Italiano (it, it-IT)
-    'it': {
-        title: 'Avviso di Contenuto Critico:',
-        text: 'Questo articolo è un\'<strong>analisi di ricerca di mercato e feedback dei consumatori</strong> sul prodotto in questione. Non sostituisce la diagnosi o il consiglio di un medico o nutrizionista. **Consultare sempre un professionista sanitario qualificato prima di iniziare qualsiasi integratore alimentare.**',
-        banner: {
-            title: '⚠️ Avviso Importante sulla Salute',
-            text: 'Le informazioni su questo sito web sono a solo scopo informativo. Consultare sempre un professionista sanitario qualificato prima di prendere qualsiasi decisione relativa alla salute.',
-            button: 'Ho capito'
-        }
-    },
-    // Finlandês (fi)
-    'fi': {
-        title: 'Kriittinen sisältövaroitus:',
-        text: 'Tämä artikkeli on kyseistä tuotetta koskeva <strong>markkinatutkimus ja kuluttajapalautteen analyysi</strong>. Se ei korvaa lääkärin tai ravitsemusterapeutin diagnoosia tai neuvoja. **Ota aina yhteyttä pätevään terveydenhuollon ammattilaiseen ennen kuin aloitat minkään ravintolisän käytön.**',
-        banner: {
-            title: '⚠️ Tärkeä terveysilmoitus',
-            text: 'Tämän verkkosivuston tiedot ovat vain tiedottavia. Ota aina yhteyttä pätevään terveydenhuollon ammattilaiseen ennen terveyteen liittyviä päätöksiä.',
-            button: 'Ymmärrän'
-        }
-    },
-    // Holandês (nl, nl-NL)
-    'nl': {
-        title: 'Kritieke inhoudswaarschuwing:',
-        text: 'Dit artikel is een <strong>marktonderzoek en consumentenfeedbackanalyse</strong> over het betreffende product. Het vervangt niet de diagnose of het advies van een arts of voedingsdeskundige. **Raadpleeg altijd een gekwalificeerde gezondheidsdeskundige voordat u met een voedingssupplement begint.**',
-        banner: {
-            title: '⚠️ Belangrijke gezondheidsmededeling',
-            text: 'De informatie op deze website is uitsluitend voor informatieve doeleinden. Raadpleeg altijd een gekwalificeerde zorgverlener voordat u gezondheidsgerelateerde beslissingen neemt.',
-            button: 'Ik begrijp het'
-        }
-    },
-    // Sueco (sv, sv-SE)
-    'sv': {
-        title: 'Kritisk innehållsvarning:',
-        text: 'Denna artikel är en <strong>marknadsundersökning och konsumentfeedbackanalys</strong> om den aktuella produkten. Den ersätter inte diagnosen eller råd från en läkare eller nutritionist. **Rådfråga alltid en kvalificerad hälso- och sjukvårdspersonal innan du påbörjar ett kosttillskott.**',
-        banner: {
-            title: '⚠️ Viktigt hälsobesked',
-            text: 'Informationen på denna webbplats är endast i informationssyfte. Rådfråga alltid en kvalificerad hälso- och sjukvårdspersonal innan du tar hälsobeslut.',
-            button: 'Jag förstår'
-        }
     }
+    // ... (mantenha os outros idiomas do seu script original)
 };
 
 /**
@@ -104,6 +45,8 @@ function createTopBanner(content) {
 
     const banner = document.createElement('div');
     banner.id = 'health-disclaimer-banner';
+    
+    // Estilos corrigidos para não quebrar o layout
     banner.style.cssText = `
         position: fixed;
         top: 0;
@@ -140,33 +83,82 @@ function createTopBanner(content) {
             font-size: 13px;
             transition: all 0.3s ease;
             white-space: nowrap;
-        " onmouseover="this.style.background='rgba(255,255,255,0.3)'" 
-        onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+        ">
             ${content.banner.button}
         </button>
     `;
 
     document.body.prepend(banner);
 
-    // Adiciona padding ao body para compensar o banner fixo
-    const bannerHeight = banner.offsetHeight;
-    document.body.style.paddingTop = bannerHeight + 'px';
+    // CORREÇÃO: Ajusta o header existente para não ser coberto pelo banner
+    adjustHeaderForBanner();
 
     // Event listener para fechar o banner
     document.getElementById('close-banner-btn').addEventListener('click', function() {
+        closeBanner();
+        
+        // Efeito hover removido - não é mais necessário
+        this.style.background = 'rgba(255,255,255,0.2)';
+    });
+
+    // Efeitos hover
+    const closeBtn = document.getElementById('close-banner-btn');
+    closeBtn.addEventListener('mouseover', function() {
+        this.style.background = 'rgba(255,255,255,0.3)';
+    });
+    closeBtn.addEventListener('mouseout', function() {
+        this.style.background = 'rgba(255,255,255,0.2)';
+    });
+}
+
+/**
+ * CORREÇÃO: Ajusta o header existente para acomodar o banner
+ */
+function adjustHeaderForBanner() {
+    const banner = document.getElementById('health-disclaimer-banner');
+    const header = document.querySelector('header');
+    
+    if (banner && header) {
+        const bannerHeight = banner.offsetHeight;
+        
+        // Aplica padding-top ao header para empurrá-lo para baixo
+        header.style.paddingTop = bannerHeight + 'px';
+        header.style.transition = 'padding-top 0.3s ease';
+        
+        // Garante que o header fique acima de outros elementos
+        header.style.position = 'relative';
+        header.style.zIndex = '9999';
+    }
+}
+
+/**
+ * Fecha o banner e restaura o layout
+ */
+function closeBanner() {
+    const banner = document.getElementById('health-disclaimer-banner');
+    const header = document.querySelector('header');
+    
+    if (banner) {
         banner.style.transform = 'translateY(-100%)';
         banner.style.transition = 'transform 0.4s ease';
-        document.body.style.paddingTop = '0';
         
+        // Remove o padding do header após a animação
+        setTimeout(() => {
+            if (header) {
+                header.style.paddingTop = '0';
+            }
+        }, 400);
+        
+        // Remove o banner do DOM após a animação
         setTimeout(() => {
             if (banner.parentNode) {
                 banner.parentNode.removeChild(banner);
             }
-        }, 400);
+        }, 500);
         
         // Salva no localStorage que o usuário fechou o banner
         localStorage.setItem('health-banner-closed', 'true');
-    });
+    }
 }
 
 /**
@@ -241,11 +233,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(initializeDisclaimers, 50);
 });
 
-// Recalcula o padding quando a janela é redimensionada (para responsividade)
+// Recalcula o padding quando a janela é redimensionada
 window.addEventListener('resize', function() {
     const banner = document.getElementById('health-disclaimer-banner');
-    if (banner && banner.style.transform !== 'translateY(-100%)') {
+    const header = document.querySelector('header');
+    
+    if (banner && header && banner.style.transform !== 'translateY(-100%)') {
         const bannerHeight = banner.offsetHeight;
-        document.body.style.paddingTop = bannerHeight + 'px';
+        header.style.paddingTop = bannerHeight + 'px';
     }
 });
