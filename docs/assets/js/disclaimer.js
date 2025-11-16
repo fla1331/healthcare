@@ -218,23 +218,65 @@ function closeBanner() {
 }
 
 /**
- * Injeta o disclaimer E-E-A-T específico logo após o H1
+ * Encontra o H1 correto do conteúdo (não do header)
+ */
+function findContentH1() {
+    // Primeiro, tenta encontrar H1s que NÃO estão no header
+    const allH1s = document.querySelectorAll('h1');
+    
+    for (let h1 of allH1s) {
+        // Se o H1 não está dentro de um header e tem conteúdo significativo
+        if (!h1.closest('header') && 
+            h1.textContent.trim().length > 10 && // Conteúdo significativo
+            h1.offsetParent !== null && // Está visível
+            h1.getBoundingClientRect().width > 0) {
+            return h1;
+        }
+    }
+    
+    // Fallback: procura H1 em áreas de conteúdo específicas
+    const contentAreas = [
+        'article', '.article', '.content', '.post', '.entry-content', 
+        'main', '.main-content', '.blog-content', '[role="main"]'
+    ];
+    
+    for (let selector of contentAreas) {
+        const area = document.querySelector(selector);
+        if (area) {
+            const h1 = area.querySelector('h1');
+            if (h1 && h1.textContent.trim().length > 10) {
+                return h1;
+            }
+        }
+    }
+    
+    // Último fallback: primeiro H1 que não está no header
+    for (let h1 of allH1s) {
+        if (!h1.closest('header')) {
+            return h1;
+        }
+    }
+    
+    return null;
+}
+
+/**
+ * Injeta o disclaimer E-E-A-T específico logo após o H1 do conteúdo
  */
 function injectEEATDisclaimer() {
-    const firstH1 = document.querySelector('h1');
+    const contentH1 = findContentH1();
     
     // Detecta o idioma
     const htmlLang = document.documentElement.lang.toLowerCase().substring(0, 2); 
     const content = disclaimerTexts[htmlLang] || disclaimerTexts['pt'];
 
-    if (!firstH1 || !content) {
+    if (!contentH1 || !content) {
         return;
     }
 
     // CRIA O ELEMENTO DIV DO DISCLAIMER
     const disclaimerDiv = document.createElement('div');
     
-    // CORREÇÃO: Voltei ao estilo original mas um pouco mais compacto
     disclaimerDiv.style.cssText = `
         padding: 14px 16px; 
         background-color: #fef9c3;
@@ -260,8 +302,8 @@ function injectEEATDisclaimer() {
         </div>
     `;
 
-    // CORREÇÃO: Voltei à inserção simples após o H1 que funcionava antes
-    firstH1.parentNode.insertBefore(disclaimerDiv, firstH1.nextSibling);
+    // Insere após o H1 do conteúdo
+    contentH1.parentNode.insertBefore(disclaimerDiv, contentH1.nextSibling);
 }
 
 /**
@@ -271,16 +313,16 @@ function initializeDisclaimers() {
     const htmlLang = document.documentElement.lang.toLowerCase().substring(0, 2); 
     const content = disclaimerTexts[htmlLang] || disclaimerTexts['pt'];
     
-    // Verifica se é uma página de artigo (tem H1) e se o usuário não fechou o banner anteriormente
-    const isArticlePage = document.querySelector('h1');
+    // Verifica se é uma página de artigo (tem H1 de conteúdo) e se o usuário não fechou o banner anteriormente
+    const contentH1 = findContentH1();
     const bannerClosed = localStorage.getItem('health-banner-closed');
     
-    if (isArticlePage && !bannerClosed) {
+    if (contentH1 && !bannerClosed) {
         createTopBanner(content);
     }
     
-    // Sempre injeta o disclaimer após o H1 em páginas de artigo
-    if (isArticlePage) {
+    // Sempre injeta o disclaimer após o H1 do conteúdo em páginas de artigo
+    if (contentH1) {
         injectEEATDisclaimer();
     }
 }
