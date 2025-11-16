@@ -234,49 +234,34 @@ function injectEEATDisclaimer() {
     // CRIA O ELEMENTO DIV DO DISCLAIMER
     const disclaimerDiv = document.createElement('div');
     
-    // MELHORIA: Estilo mais compacto e melhor integrado
+    // CORREÇÃO: Voltei ao estilo original mas um pouco mais compacto
     disclaimerDiv.style.cssText = `
-        padding: 12px 16px; 
+        padding: 14px 16px; 
         background-color: #fef9c3;
         border-left: 4px solid #eab308; 
         border-radius: 6px; 
         margin: 20px 0; 
         font-family: 'Inter', sans-serif; 
         max-width: 100%;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-        font-size: 0.9rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     `;
 
     disclaimerDiv.innerHTML = `
         <div style="display: flex; align-items: flex-start;">
-            <div style="flex-shrink: 0; color: #a16207; margin-top: 1px;">
+            <div style="flex-shrink: 0; color: #a16207; margin-top: 2px;">
                 <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.398 16c-.77 1.333.192 3 1.732 3z"></path>
                 </svg>
             </div>
-            <div style="margin-left: 10px; font-size: 0.9rem; color: #a16207; line-height: 1.4;">
-                <p style="font-weight: 600; color: #a16207; margin-top: 0; margin-bottom: 2px; font-size: 0.95rem;">${content.title}</p>
+            <div style="margin-left: 12px; font-size: 0.9rem; color: #a16207; line-height: 1.5;">
+                <p style="font-weight: 600; color: #a16207; margin-top: 0; margin-bottom: 4px;">${content.title}</p>
                 <p style="margin: 0; font-size: 0.85rem;">${content.text}</p>
             </div>
         </div>
     `;
 
-    // MELHORIA: Encontra o elemento correto para inserir após o H1
-    const articleContent = firstH1.closest('article') || firstH1.closest('.content') || firstH1.parentElement;
-    
-    if (articleContent) {
-        // Encontra o próximo elemento após o H1 para inserir antes dele
-        const h1NextSibling = firstH1.nextElementSibling;
-        if (h1NextSibling) {
-            articleContent.insertBefore(disclaimerDiv, h1NextSibling);
-        } else {
-            // Se não há próximo elemento, adiciona no final do container do H1
-            articleContent.appendChild(disclaimerDiv);
-        }
-    } else {
-        // Fallback: insere após o H1 como antes
-        firstH1.parentNode.insertBefore(disclaimerDiv, firstH1.nextSibling);
-    }
+    // CORREÇÃO: Voltei à inserção simples após o H1 que funcionava antes
+    firstH1.parentNode.insertBefore(disclaimerDiv, firstH1.nextSibling);
 }
 
 /**
