@@ -544,6 +544,19 @@
     </image:image>
   </url>
 
+  
+
+  <url>
+    <loc>https://healthandlongevity.reviewnexus.blog/en/brainson-guide</loc>
+    <lastmod>2025-11-16</lastmod>
+    
+    
+    
+    <image:image>
+      <image:loc>https://healthandlongevity.reviewnexus.blog/assets/img/en/brainson/neuroscience.jpg</image:loc>
+    </image:image>
+  </url>
+
   <url>
     <loc>https://healthandlongevity.reviewnexus.blog/en/brainson-review</loc>
     <lastmod>2025-11-16</lastmod>
@@ -551,7 +564,7 @@
     
     
     <image:image>
-      <image:loc>https://healthandlongevity.reviewnexus.blog/assets/img/en/brainson/brainson-review.png</image:loc>
+      <image:loc>https://healthandlongevity.reviewnexus.blog/assets/img/en/brainson/brainson-product.jpg</image:loc>
     </image:image>
   </url>
 </urlset>
