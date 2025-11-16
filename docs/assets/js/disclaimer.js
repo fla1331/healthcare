@@ -276,6 +276,9 @@ function injectEEATDisclaimer() {
 
     // CRIA O ELEMENTO DIV DO DISCLAIMER
     const disclaimerDiv = document.createElement('div');
+
+    // Adiciona a classe
+    disclaimerDiv.className = 'disclaimer-content';
     
     disclaimerDiv.style.cssText = `
         padding: 14px 16px; 
