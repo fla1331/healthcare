@@ -472,3 +472,6 @@ footer a:hover {
         padding-bottom: 10px;
     }
 }   
+
+/*disclaimer*/
+.container .content .disclaimer-content {display:none;}
