@@ -70,7 +70,8 @@ header {
     background-color: var(--light-bg);
     color: var(--white);
     padding: 1.2rem 0; /* Aumentado um pouco o padding */
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md);margin-top: 40px;
+    padding-bottom: 40px;
 }
 header a {color:var(--white) !important;} /* Garante que links no header sejam brancos */
 header .container {
@@ -90,8 +91,8 @@ header .container {
     background-repeat: no-repeat;
     background-position: left center;
     display: block;
-    width: 80px; 
-    height: 77px;
+    width: 73px; 
+    height: 65px;
     text-indent: -9999px; 
     overflow: hidden; 
     text-decoration: none;
