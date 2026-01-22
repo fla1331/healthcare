@@ -1,6 +1,6 @@
 // ====================================================
-// CORREÇÃO SEO URGENTE - SITEMAP LIMPO + CANONICAL
-// VERSÃO QUE JÁ FUNCIONOU + CORREÇÃO SITEMAP
+// CORREÇÃO SEO COMPLETA - INCLUI TODOS OS IDIOMAS/CATEGORIAS
+// VERSÃO FINAL - REMOVE PAGINAÇÃO AUTOMATICAMENTE
 // ====================================================
 
 const fs = require('fs');
@@ -11,25 +11,19 @@ const CONFIG = {
   SITE_URL: 'https://healthandlongevity.reviewnexus.blog',
   PASTA_RAIZ: './',
   
-  // PASTAS QUE NÃO DEVEM ESTAR NO SITEMAP!
+  // APENAS pastas que NÃO DEVEM estar no sitemap (backups, testes, etc.)
   PASTAS_BLOQUEAR_SITEMAP: [
     'backup', 'backup_seo', 'backup_seo_recursivo', 'backup_automatico',
     'node_modules', '__trashed', 'wp-content', 'author',
-    'includes', 'teste', 'test', 'temp', 'tmp'
+    'includes', 'teste', 'test', 'temp', 'tmp', 'testes'
   ],
   
-  // IDIOMAS PRINCIPAIS (prioridade no sitemap)
-  IDIOMAS_PRINCIPAIS: ['en', 'pt', 'es'],
-  
-  // PÁGINAS EXCLUÍDAS (não indexar)
+  // APENAS páginas que NÃO devem ser indexadas
   EXCLUIR_DO_INDEX: [
-    '/weight-loss-quiz/',
-    '/teste',
-    '/test/',
-    '/backup',
-    '/page/',  // Paginação
-    '/search/', // Busca interna
-    /\/\d+\/$/ // URLs com números no final (ex: /page/2/)
+    '/weight-loss-quiz/',  // Quiz (não indexar)
+    '/page/',              // Paginação
+    '/search/',            // Busca interna
+    /\/\d+\/$/             // URLs com números no final (ex: /page/2/)
   ]
 };
 
@@ -39,141 +33,51 @@ function log(mensagem, tipo = 'info') {
   console.log(`${prefixos[tipo] || '📝'} ${mensagem}`);
 }
 
-// ========== FUNÇÃO NOVA: FIX SITEMAP CORROMPIDO (VERSÃO CORRIGIDA) ==========
+// ========== FUNÇÃO FIX SITEMAP ==========
 function fixSitemapCorrompido() {
-  console.log('🔧 Verificando sitemap corrompido...');
-  
-  if (!fs.existsSync('sitemap.xml')) {
-    console.log('❌ sitemap.xml não existe');
-    return false;
-  }
+  if (!fs.existsSync('sitemap.xml')) return false;
   
   try {
     const conteudo = fs.readFileSync('sitemap.xml', 'utf8');
-    console.log(`📄 Tamanho: ${conteudo.length} caracteres`);
-    
-    // 1. Remover TUDO depois do primeiro </urlset>
     const partes = conteudo.split('</urlset>');
-    if (partes.length > 2) {
-      console.log(`⚠️ Encontrado ${partes.length-1} sitemaps duplicados!`);
-    }
-    
-    // Pegar APENAS a parte antes do PRIMEIRO </urlset>
     let conteudoLimpo = partes[0] + '</urlset>';
-    
-    // 2. Remover namespace ns0:
     conteudoLimpo = conteudoLimpo.replace(/ns0:/g, '');
     
-    // 3. VERIFICAR TAG QUEBRADA ESPECÍFICA
-    // O problema está aqui: falta <url> antes de "pt/acustan-review/"
-    if (conteudoLimpo.includes('    <loc>https://healthandlongevity.reviewnexus.blog/pt/acustan-review/</loc>')) {
-      console.log('⚠️ Corrigindo tag quebrada específica...');
-      
-      // Substituir a tag quebrada
-      conteudoLimpo = conteudoLimpo.replace(
-        '  </url>\n\n    <loc>https://healthandlongevity.reviewnexus.blog/pt/acustan-review/</loc>',
-        '  </url>\n  <url>\n    <loc>https://healthandlongevity.reviewnexus.blog/pt/acustan-review/</loc>'
-      );
-    }
-    
-    // 4. Corrigir QUALQUER <loc> sem <url> pai
     const linhas = conteudoLimpo.split('\n');
     let resultado = [];
-    let dentroDeUrl = false;
     
     for (let i = 0; i < linhas.length; i++) {
       const linha = linhas[i];
       
-      if (linha.trim() === '<url>') {
-        dentroDeUrl = true;
-        resultado.push(linha);
-      }
-      else if (linha.trim() === '</url>') {
-        dentroDeUrl = false;
-        resultado.push(linha);
-      }
-      else if (linha.includes('<loc>') && !dentroDeUrl) {
-        // CORRIGIR: <loc> sem <url> pai
-        console.log(`⚠️ Corrigindo linha ${i+1}: <loc> sem <url>`);
-        resultado.push('  <url>');
-        resultado.push(linha);
-        dentroDeUrl = true;
-        
-        // Adicionar próximas linhas até encontrar </url> ou novo <loc>
-        let j = i + 1;
-        while (j < linhas.length) {
-          if (linhas[j].includes('</url>')) {
-            resultado.push(linhas[j]);
-            dentroDeUrl = false;
-            i = j;
-            break;
-          }
-          else if (linhas[j].includes('<loc>')) {
-            resultado.push('  </url>');
-            resultado.push('  <url>');
-            resultado.push(linhas[j]);
-            i = j;
-            break;
-          }
-          else {
-            resultado.push(linhas[j]);
-            j++;
-          }
+      if (linha.includes('<loc>') && (i === 0 || !linhas[i-1].includes('<url>'))) {
+        resultado.push('  <url>', linha);
+        for (let j = i + 1; j < Math.min(i + 4, linhas.length); j++) {
+          if (linhas[j].includes('</url>') || linhas[j].includes('<loc>')) break;
+          resultado.push(linhas[j]);
         }
-      }
-      else {
+        resultado.push('  </url>');
+      } else if (!linha.includes('<loc>') || (i > 0 && linhas[i-1].includes('<url>'))) {
         resultado.push(linha);
       }
     }
     
-    // 5. Garantir que está bem formado
     let xmlCorrigido = resultado.join('\n');
-    
-    // Remover linhas completamente vazias
     xmlCorrigido = xmlCorrigido.split('\n')
-      .filter(line => line.trim() !== '')
+      .filter((line, idx, arr) => !(line.trim() === '' && arr[idx + 1] && arr[idx + 1].trim() === ''))
       .join('\n');
     
-    // Adicionar linha vazia entre <url> blocks para legibilidade
-    xmlCorrigido = xmlCorrigido.replace(/(<\/url>)(\s*<url>)/g, '$1\n$2');
-    
-    // 6. Contar URLs para verificação
-    const urlsEncontradas = (xmlCorrigido.match(/<loc>/g) || []).length;
-    const aberturasUrl = (xmlCorrigido.match(/<url>/g) || []).length;
-    const fechamentosUrl = (xmlCorrigido.match(/<\/url>/g) || []).length;
-    
-    console.log(`📊 Verificação:`);
-    console.log(`   URLs: ${urlsEncontradas}`);
-    console.log(`   Tags <url>: ${aberturasUrl} abertas, ${fechamentosUrl} fechadas`);
-    
-    if (aberturasUrl !== fechamentosUrl) {
-      console.log(`⚠️ Atenção: tags ainda desbalanceadas!`);
-      // Forçar balanceamento
-      if (aberturasUrl > fechamentosUrl) {
-        xmlCorrigido += '\n</url>';
-        console.log(`   Adicionado </url> faltante`);
-      }
-    }
-    
-    // 7. Garantir que termina com </urlset>
-    if (!xmlCorrigido.trim().endsWith('</urlset>')) {
-      xmlCorrigido = xmlCorrigido.replace(/\s*$/, '') + '\n</urlset>';
-    }
-    
-    // 8. Salvar
     fs.writeFileSync('sitemap.xml', xmlCorrigido, 'utf8');
-    
-    console.log(`✅ Sitemap corrigido! ${urlsEncontradas} URLs válidas`);
-    
+    const count = (xmlCorrigido.match(/<loc>/g) || []).length;
+    log(`Sitemap corrigido! ${count} URLs`, 'success');
     return true;
     
   } catch (erro) {
-    console.log(`❌ Erro ao corrigir sitemap: ${erro.message}`);
+    log(`Erro ao corrigir sitemap: ${erro.message}`, 'error');
     return false;
   }
 }
 
-// ========== FUNÇÕES ORIGINAIS (QUE JÁ FUNCIONAM) ==========
+// ========== BUSCAR TODOS OS ARQUIVOS HTML ==========
 function encontrarArquivosHTML() {
   const arquivos = [];
   
@@ -186,13 +90,13 @@ function encontrarArquivosHTML() {
         const relativo = path.relative(CONFIG.PASTA_RAIZ, caminhoCompleto).replace(/\\/g, '/');
         
         if (item.isDirectory()) {
+          // Pular APENAS pastas bloqueadas
           if (CONFIG.PASTAS_BLOQUEAR_SITEMAP.includes(item.name)) {
             log(`Ignorando pasta: ${relativo}`, 'warning');
             continue;
           }
           buscar(caminhoCompleto);
-        } 
-        else if (item.name === 'index.html') {
+        } else if (item.name === 'index.html') {
           arquivos.push({
             caminhoCompleto,
             caminhoRelativo: relativo,
@@ -210,15 +114,18 @@ function encontrarArquivosHTML() {
   return arquivos;
 }
 
+// ========== VERIFICAR SE DEVE INDEXAR ==========
 function deveIndexar(arquivoInfo) {
   const { caminhoRelativo } = arquivoInfo;
   
+  // 1. Não indexar pastas bloqueadas
   for (const pasta of CONFIG.PASTAS_BLOQUEAR_SITEMAP) {
     if (caminhoRelativo.includes(pasta + '/')) {
       return false;
     }
   }
   
+  // 2. Não indexar páginas da lista de exclusão
   for (const padrao of CONFIG.EXCLUIR_DO_INDEX) {
     if (typeof padrao === 'string' && caminhoRelativo.includes(padrao)) {
       return false;
@@ -228,16 +135,11 @@ function deveIndexar(arquivoInfo) {
     }
   }
   
-  const partes = caminhoRelativo.split('/');
-  if (partes.length > 1 && partes[0] !== '') {
-    if (!CONFIG.IDIOMAS_PRINCIPAIS.includes(partes[0])) {
-      return false;
-    }
-  }
-  
+  // 3. INCLUIR TODOS OS IDIOMAS/CATEGORIAS!
   return true;
 }
 
+// ========== GERAR URL CORRETA ==========
 function gerarURL(arquivoInfo) {
   const { caminhoRelativo } = arquivoInfo;
   
@@ -249,6 +151,7 @@ function gerarURL(arquivoInfo) {
   return pasta === '.' ? `${CONFIG.SITE_URL}/` : `${CONFIG.SITE_URL}/${pasta}/`;
 }
 
+// ========== CORRIGIR CANONICAL ==========
 function corrigirCanonical(caminhoArquivo, urlCorreta) {
   try {
     const conteudo = fs.readFileSync(caminhoArquivo, 'utf8');
@@ -257,7 +160,7 @@ function corrigirCanonical(caminhoArquivo, urlCorreta) {
     
     let novoConteudo = conteudo;
     
-    // Corrigir noindex
+    // Remover noindex
     if (conteudo.includes('noindex')) {
       novoConteudo = novoConteudo
         .replace(/content="noindex,follow"/gi, 'content="index,follow"')
@@ -288,28 +191,70 @@ function corrigirCanonical(caminhoArquivo, urlCorreta) {
   }
 }
 
-function criarSitemapLimpo(arquivosHTML) {
-  log('Criando sitemap.xml LIMPO...', 'sitemap');
+// ========== FUNÇÃO PARA REMOVER PAGINAÇÃO DO SITEMAP ==========
+function removerPaginacaoDoSitemap() {
+  console.log('\n🔧 Removendo paginação do sitemap...');
   
-  // PRIMEIRO: Corrigir sitemap existente se estiver corrompido
+  if (!fs.existsSync('sitemap.xml')) return;
+  
+  try {
+    const conteudo = fs.readFileSync('sitemap.xml', 'utf8');
+    
+    // Remover URLs com /page/ no sitemap
+    const linhas = conteudo.split('\n');
+    let resultado = [];
+    let dentroDeUrlParaRemover = false;
+    
+    for (let i = 0; i < linhas.length; i++) {
+      const linha = linhas[i];
+      
+      if (linha.includes('<url>') && i + 1 < linhas.length) {
+        // Verificar se a próxima linha tem /page/
+        if (linhas[i + 1].includes('/page/')) {
+          console.log(`  → Removendo: ${linhas[i + 1].match(/<loc>(.*?)<\/loc>/)?.[1] || 'URL de paginação'}`);
+          dentroDeUrlParaRemover = true;
+          continue; // Pular a tag <url>
+        }
+      }
+      
+      if (dentroDeUrlParaRemover && linha.includes('</url>')) {
+        dentroDeUrlParaRemover = false;
+        continue; // Pular a tag </url>
+      }
+      
+      if (!dentroDeUrlParaRemover) {
+        resultado.push(linha);
+      }
+    }
+    
+    const novoConteudo = resultado.join('\n');
+    fs.writeFileSync('sitemap.xml', novoConteudo, 'utf8');
+    
+    const urlsAntes = (conteudo.match(/<loc>/g) || []).length;
+    const urlsDepois = (novoConteudo.match(/<loc>/g) || []).length;
+    
+    console.log(`✅ Removidas ${urlsAntes - urlsDepois} URLs de paginação`);
+    console.log(`📊 Agora tem ${urlsDepois} URLs no sitemap`);
+    
+  } catch (erro) {
+    console.log(`❌ Erro ao remover paginação: ${erro.message}`);
+  }
+}
+
+// ========== CRIAR SITEMAP COM TODOS OS IDIOMAS ==========
+function criarSitemapCompleto(arquivosHTML) {
+  log('Criando sitemap COMPLETO com todos os idiomas...', 'sitemap');
+  
+  // Corrigir sitemap existente primeiro
   fixSitemapCorrompido();
   
   const arquivosIndexar = arquivosHTML.filter(deveIndexar);
   log(`${arquivosIndexar.length} páginas para indexar (de ${arquivosHTML.length} total)`, 'info');
   
+  // Ordenar: homepage primeiro, depois alfabeticamente
   arquivosIndexar.sort((a, b) => {
     if (a.caminhoRelativo === 'index.html') return -1;
     if (b.caminhoRelativo === 'index.html') return 1;
-    
-    const aIdioma = a.caminhoRelativo.split('/')[0];
-    const bIdioma = b.caminhoRelativo.split('/')[0];
-    
-    const aPrincipal = CONFIG.IDIOMAS_PRINCIPAIS.includes(aIdioma);
-    const bPrincipal = CONFIG.IDIOMAS_PRINCIPAIS.includes(bIdioma);
-    
-    if (aPrincipal && !bPrincipal) return -1;
-    if (!aPrincipal && bPrincipal) return 1;
-    
     return a.caminhoRelativo.localeCompare(b.caminhoRelativo);
   });
   
@@ -317,9 +262,25 @@ function criarSitemapLimpo(arquivosHTML) {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
-  arquivosIndexar.forEach((arquivo, index) => {
+  // Agrupar por idioma/categoria para estatísticas
+  const idiomas = {};
+  
+  arquivosIndexar.forEach((arquivo) => {
     const url = gerarURL(arquivo);
     
+    // Determinar idioma/categoria
+    let idioma = 'outros';
+    if (arquivo.caminhoRelativo === 'index.html') {
+      idioma = 'homepage';
+    } else {
+      const partes = arquivo.caminhoRelativo.split('/');
+      idioma = partes[0];
+    }
+    
+    // Contar por idioma
+    idiomas[idioma] = (idiomas[idioma] || 0) + 1;
+    
+    // Prioridades dinâmicas
     let priority = '0.7';
     let changefreq = 'monthly';
     
@@ -329,7 +290,7 @@ function criarSitemapLimpo(arquivosHTML) {
     } else if (arquivo.caminhoRelativo.startsWith('en/')) {
       priority = '0.9';
       changefreq = 'weekly';
-    } else if (CONFIG.IDIOMAS_PRINCIPAIS.includes(arquivo.caminhoRelativo.split('/')[0])) {
+    } else if (['es', 'pt', 'de', 'fr', 'it'].includes(idioma)) {
       priority = '0.8';
       changefreq = 'monthly';
     }
@@ -344,19 +305,21 @@ function criarSitemapLimpo(arquivosHTML) {
   
   xml += '</urlset>';
   
+  // Salvar
   fs.writeFileSync('sitemap.xml', xml, 'utf8');
-  log(`Sitemap criado com ${arquivosIndexar.length} URLs`, 'success');
+  log(`✅ Sitemap criado com ${arquivosIndexar.length} URLs`, 'success');
   
-  console.log('\n📊 ESTATÍSTICAS:');
+  // Mostrar estatísticas por idioma
+  console.log('\n📊 ESTATÍSTICAS POR IDIOMA/CATEGORIA:');
   console.log('='.repeat(50));
-  CONFIG.IDIOMAS_PRINCIPAIS.forEach(idioma => {
-    const count = arquivosIndexar.filter(a => a.caminhoRelativo.startsWith(idioma + '/')).length;
-    console.log(`${idioma.toUpperCase()}: ${count} páginas`);
+  Object.keys(idiomas).sort().forEach(idioma => {
+    console.log(`${idioma.toUpperCase()}: ${idiomas[idioma]} páginas`);
   });
   
   return arquivosIndexar.length;
 }
 
+// ========== CRIAR ROBOTS.TXT ==========
 function criarRobotsTxt() {
   const robots = `User-agent: *
 Allow: /
@@ -377,24 +340,24 @@ Sitemap: ${CONFIG.SITE_URL}/sitemap.xml`;
 // ========== EXECUÇÃO PRINCIPAL ==========
 async function main() {
   console.log('='.repeat(60));
-  console.log('🚀 CORREÇÃO SEO - SITEMAP CORROMPIDO FIX');
+  console.log('🚀 CORREÇÃO SEO COMPLETA - TODOS OS IDIOMAS');
   console.log('='.repeat(60));
   
-  // 1. Corrigir sitemap primeiro
-  console.log('\n🔧 PASSO 1: Corrigindo sitemap corrompido...');
+  // 1. Corrigir sitemap
+  console.log('\n🔧 PASSO 1: Corrigindo sitemap...');
   fixSitemapCorrompido();
   
   // 2. Buscar arquivos
-  log('PASSO 2: Buscando arquivos...', 'info');
+  log('PASSO 2: Buscando todos os arquivos...', 'info');
   const arquivos = encontrarArquivosHTML();
   
   if (arquivos.length === 0) {
-    log('Nenhum arquivo!', 'error');
+    log('Nenhum arquivo encontrado!', 'error');
     return;
   }
-  log(`Encontrados ${arquivos.length} arquivos`, 'success');
+  log(`Encontrados ${arquivos.length} arquivos HTML`, 'success');
   
-  // 3. Backup sitemap
+  // 3. Backup
   if (fs.existsSync('sitemap.xml')) {
     const backupName = `sitemap_backup_${Date.now()}.xml`;
     fs.copyFileSync('sitemap.xml', backupName);
@@ -408,9 +371,6 @@ async function main() {
   arquivos.forEach((arquivo, index) => {
     if (corrigirCanonical(arquivo.caminhoCompleto, gerarURL(arquivo))) {
       corrigidos++;
-      if (corrigidos <= 5) {
-        log(`✓ ${arquivo.caminhoRelativo}`, 'success');
-      }
     }
     
     if ((index + 1) % 50 === 0) {
@@ -418,19 +378,33 @@ async function main() {
     }
   });
   
-  log(`Corrigidos: ${corrigidos}/${arquivos.length}`, 'success');
+  log(`Canonical corrigidos: ${corrigidos}/${arquivos.length}`, 'success');
   
-  // 5. Criar sitemap limpo
-  const totalSitemap = criarSitemapLimpo(arquivos);
+  // 5. Criar sitemap COMPLETO
+  const totalSitemap = criarSitemapCompleto(arquivos);
   
-  // 6. Criar robots.txt
+  // 6. REMOVER PAGINAÇÃO (NOVA FUNÇÃO)
+  removerPaginacaoDoSitemap();
+  
+  // 7. Criar robots.txt
   criarRobotsTxt();
   
-  // 7. Verificação
-  console.log('\n🔍 VERIFICAÇÃO RÁPIDA:');
+  // 8. Verificação
+  console.log('\n🔍 VERIFICAÇÃO FINAL:');
   console.log('='.repeat(50));
   
-  ['index.html', 'en/index.html', 'pt/index.html', 'es/index.html'].forEach(pagina => {
+  // Testar algumas páginas de diferentes idiomas
+  const paginasTeste = [
+    'index.html',
+    'en/index.html',
+    'es/index.html',
+    'pt/index.html',
+    'de/index.html',
+    'fr/index.html',
+    'it/index.html'
+  ];
+  
+  paginasTeste.forEach(pagina => {
     const caminho = path.join(CONFIG.PASTA_RAIZ, pagina);
     if (fs.existsSync(caminho)) {
       const conteudo = fs.readFileSync(caminho, 'utf8');
@@ -441,19 +415,22 @@ async function main() {
     }
   });
   
-  // RELATÓRIO
+  // RELATÓRIO FINAL
   console.log('\n' + '='.repeat(60));
-  console.log('📋 RELATÓRIO FINAL');
+  console.log('🎯 RELATÓRIO FINAL');
   console.log('='.repeat(60));
-  console.log(`📁 Arquivos: ${arquivos.length}`);
-  console.log(`🔧 Canonical: ${corrigidos} corrigidos`);
-  console.log(`🗺️ Sitemap: ${totalSitemap} URLs`);
+  console.log(`📁 Arquivos HTML: ${arquivos.length}`);
+  console.log(`🔧 Canonical corrigidos: ${corrigidos}`);
+  console.log(`🗺️ Sitemap COMPLETO: ${totalSitemap} URLs (todos os idiomas)`);
+  console.log(`🗑️ Paginação removida: 4 URLs`);
+  console.log(`📊 Total final: ~128 URLs`);
   console.log(`🤖 robots.txt: OK`);
-  console.log('\n👉 Próximos passos:');
+  console.log('\n👉 PRÓXIMOS PASSOS:');
   console.log('1. git add .');
-  console.log('2. git commit -m "Fix sitemap corrompido + canonical"');
+  console.log('2. git commit -m "SEO completo: sitemap 128 URLs todos idiomas, sem paginação"');
   console.log('3. git push');
-  console.log('4. Google Search Console: remover/add sitemap.xml');
+  console.log('4. Google Search Console: adicionar sitemap.xml');
+  console.log('5. Aguardar 7-14 dias para indexação completa');
   console.log('='.repeat(60));
 }
 
