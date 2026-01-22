@@ -1,0 +1,15 @@
+.env
+config_ia.json
+config.json
+*.env
+
+backups/
+*.csv
+logs/
+
+teste_api.py
+teste_openrouter.py
+tutorial.txt
+
+produtos.csv
+reviews_finalizados.json
