@@ -39,7 +39,7 @@ function log(mensagem, tipo = 'info') {
   console.log(`${prefixos[tipo] || '📝'} ${mensagem}`);
 }
 
-// ========== FUNÇÃO NOVA: FIX SITEMAP CORROMPIDO ==========
+// ========== FUNÇÃO NOVA: FIX SITEMAP CORROMPIDO (VERSÃO CORRIGIDA) ==========
 function fixSitemapCorrompido() {
   console.log('🔧 Verificando sitemap corrompido...');
   
@@ -50,68 +50,120 @@ function fixSitemapCorrompido() {
   
   try {
     const conteudo = fs.readFileSync('sitemap.xml', 'utf8');
+    console.log(`📄 Tamanho: ${conteudo.length} caracteres`);
     
     // 1. Remover TUDO depois do primeiro </urlset>
     const partes = conteudo.split('</urlset>');
-    if (partes.length > 1) {
-      console.log('⚠️ Encontrado sitemap duplicado! Limpando...');
+    if (partes.length > 2) {
+      console.log(`⚠️ Encontrado ${partes.length-1} sitemaps duplicados!`);
     }
     
+    // Pegar APENAS a parte antes do PRIMEIRO </urlset>
     let conteudoLimpo = partes[0] + '</urlset>';
     
     // 2. Remover namespace ns0:
     conteudoLimpo = conteudoLimpo.replace(/ns0:/g, '');
     
-    // 3. Corrigir tags quebradas - método SIMPLES
-    // Encontrar linhas com <loc> que não têm <url> antes
+    // 3. VERIFICAR TAG QUEBRADA ESPECÍFICA
+    // O problema está aqui: falta <url> antes de "pt/acustan-review/"
+    if (conteudoLimpo.includes('    <loc>https://healthandlongevity.reviewnexus.blog/pt/acustan-review/</loc>')) {
+      console.log('⚠️ Corrigindo tag quebrada específica...');
+      
+      // Substituir a tag quebrada
+      conteudoLimpo = conteudoLimpo.replace(
+        '  </url>\n\n    <loc>https://healthandlongevity.reviewnexus.blog/pt/acustan-review/</loc>',
+        '  </url>\n  <url>\n    <loc>https://healthandlongevity.reviewnexus.blog/pt/acustan-review/</loc>'
+      );
+    }
+    
+    // 4. Corrigir QUALQUER <loc> sem <url> pai
     const linhas = conteudoLimpo.split('\n');
     let resultado = [];
+    let dentroDeUrl = false;
     
     for (let i = 0; i < linhas.length; i++) {
       const linha = linhas[i];
       
-      // Se a linha tem <loc> e a linha anterior NÃO tem <url>
-      if (linha.includes('<loc>') && 
-          (i === 0 || !linhas[i-1].includes('<url>'))) {
+      if (linha.trim() === '<url>') {
+        dentroDeUrl = true;
+        resultado.push(linha);
+      }
+      else if (linha.trim() === '</url>') {
+        dentroDeUrl = false;
+        resultado.push(linha);
+      }
+      else if (linha.includes('<loc>') && !dentroDeUrl) {
+        // CORRIGIR: <loc> sem <url> pai
         console.log(`⚠️ Corrigindo linha ${i+1}: <loc> sem <url>`);
         resultado.push('  <url>');
         resultado.push(linha);
+        dentroDeUrl = true;
         
-        // Adicionar próximas tags (lastmod, changefreq, priority)
-        for (let j = i + 1; j < Math.min(i + 4, linhas.length); j++) {
-          if (linhas[j].includes('</url>') || linhas[j].includes('<loc>')) {
+        // Adicionar próximas linhas até encontrar </url> ou novo <loc>
+        let j = i + 1;
+        while (j < linhas.length) {
+          if (linhas[j].includes('</url>')) {
+            resultado.push(linhas[j]);
+            dentroDeUrl = false;
+            i = j;
             break;
           }
-          resultado.push(linhas[j]);
+          else if (linhas[j].includes('<loc>')) {
+            resultado.push('  </url>');
+            resultado.push('  <url>');
+            resultado.push(linhas[j]);
+            i = j;
+            break;
+          }
+          else {
+            resultado.push(linhas[j]);
+            j++;
+          }
         }
-        
-        resultado.push('  </url>');
-      } 
-      else if (!linha.includes('<loc>') || 
-               (i > 0 && linhas[i-1].includes('<url>'))) {
+      }
+      else {
         resultado.push(linha);
       }
     }
     
-    // Juntar tudo
+    // 5. Garantir que está bem formado
     let xmlCorrigido = resultado.join('\n');
     
-    // Remover linhas vazias duplicadas
+    // Remover linhas completamente vazias
     xmlCorrigido = xmlCorrigido.split('\n')
-      .filter((line, index, arr) => {
-        if (line.trim() === '' && arr[index + 1] && arr[index + 1].trim() === '') {
-          return false;
-        }
-        return true;
-      })
+      .filter(line => line.trim() !== '')
       .join('\n');
     
-    // Salvar
+    // Adicionar linha vazia entre <url> blocks para legibilidade
+    xmlCorrigido = xmlCorrigido.replace(/(<\/url>)(\s*<url>)/g, '$1\n$2');
+    
+    // 6. Contar URLs para verificação
+    const urlsEncontradas = (xmlCorrigido.match(/<loc>/g) || []).length;
+    const aberturasUrl = (xmlCorrigido.match(/<url>/g) || []).length;
+    const fechamentosUrl = (xmlCorrigido.match(/<\/url>/g) || []).length;
+    
+    console.log(`📊 Verificação:`);
+    console.log(`   URLs: ${urlsEncontradas}`);
+    console.log(`   Tags <url>: ${aberturasUrl} abertas, ${fechamentosUrl} fechadas`);
+    
+    if (aberturasUrl !== fechamentosUrl) {
+      console.log(`⚠️ Atenção: tags ainda desbalanceadas!`);
+      // Forçar balanceamento
+      if (aberturasUrl > fechamentosUrl) {
+        xmlCorrigido += '\n</url>';
+        console.log(`   Adicionado </url> faltante`);
+      }
+    }
+    
+    // 7. Garantir que termina com </urlset>
+    if (!xmlCorrigido.trim().endsWith('</urlset>')) {
+      xmlCorrigido = xmlCorrigido.replace(/\s*$/, '') + '\n</urlset>';
+    }
+    
+    // 8. Salvar
     fs.writeFileSync('sitemap.xml', xmlCorrigido, 'utf8');
     
-    // Contar URLs
-    const count = (xmlCorrigido.match(/<loc>/g) || []).length;
-    console.log(`✅ Sitemap corrigido! ${count} URLs`);
+    console.log(`✅ Sitemap corrigido! ${urlsEncontradas} URLs válidas`);
     
     return true;
     
