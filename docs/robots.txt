@@ -1,32 +1,11 @@
-# robots.txt gerado automaticamente
 User-agent: *
 Allow: /
 Disallow: /backup/
 Disallow: /backup_seo/
 Disallow: /backup_seo_recursivo/
-Disallow: /backup_automatico/
 Disallow: /teste/
 Disallow: /test/
 Disallow: /weight-loss-quiz/
-Disallow: /search/
 Disallow: /page/
 
 Sitemap: https://healthandlongevity.reviewnexus.blog/sitemap.xml
-
-# Google específico
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Googlebot-Image
-Allow: /
-Disallow: /backup/
-
-# Bing
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 2
-
-# Outros bots
-User-agent: *
-Disallow: /backup/

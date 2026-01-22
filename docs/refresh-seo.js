@@ -1,5 +1,6 @@
 // ====================================================
 // CORREÇÃO SEO URGENTE - SITEMAP LIMPO + CANONICAL
+// VERSÃO QUE JÁ FUNCIONOU + CORREÇÃO SITEMAP
 // ====================================================
 
 const fs = require('fs');
@@ -34,17 +35,93 @@ const CONFIG = {
 
 // ========== FUNÇÕES ==========
 function log(mensagem, tipo = 'info') {
-  const cores = {
-    info: '\x1b[36m%s\x1b[0m',    // Cyan
-    success: '\x1b[32m%s\x1b[0m', // Green
-    error: '\x1b[31m%s\x1b[0m',   // Red
-    warning: '\x1b[33m%s\x1b[0m', // Yellow
-    sitemap: '\x1b[35m%s\x1b[0m'  // Magenta
-  };
-  console.log(cores[tipo] || '\x1b[36m%s\x1b[0m', `[${tipo.toUpperCase()}] ${mensagem}`);
+  const prefixos = { info: '📝', success: '✅', error: '❌', warning: '⚠️', sitemap: '🗺️' };
+  console.log(`${prefixos[tipo] || '📝'} ${mensagem}`);
 }
 
-// Encontrar arquivos HTML válidos
+// ========== FUNÇÃO NOVA: FIX SITEMAP CORROMPIDO ==========
+function fixSitemapCorrompido() {
+  console.log('🔧 Verificando sitemap corrompido...');
+  
+  if (!fs.existsSync('sitemap.xml')) {
+    console.log('❌ sitemap.xml não existe');
+    return false;
+  }
+  
+  try {
+    const conteudo = fs.readFileSync('sitemap.xml', 'utf8');
+    
+    // 1. Remover TUDO depois do primeiro </urlset>
+    const partes = conteudo.split('</urlset>');
+    if (partes.length > 1) {
+      console.log('⚠️ Encontrado sitemap duplicado! Limpando...');
+    }
+    
+    let conteudoLimpo = partes[0] + '</urlset>';
+    
+    // 2. Remover namespace ns0:
+    conteudoLimpo = conteudoLimpo.replace(/ns0:/g, '');
+    
+    // 3. Corrigir tags quebradas - método SIMPLES
+    // Encontrar linhas com <loc> que não têm <url> antes
+    const linhas = conteudoLimpo.split('\n');
+    let resultado = [];
+    
+    for (let i = 0; i < linhas.length; i++) {
+      const linha = linhas[i];
+      
+      // Se a linha tem <loc> e a linha anterior NÃO tem <url>
+      if (linha.includes('<loc>') && 
+          (i === 0 || !linhas[i-1].includes('<url>'))) {
+        console.log(`⚠️ Corrigindo linha ${i+1}: <loc> sem <url>`);
+        resultado.push('  <url>');
+        resultado.push(linha);
+        
+        // Adicionar próximas tags (lastmod, changefreq, priority)
+        for (let j = i + 1; j < Math.min(i + 4, linhas.length); j++) {
+          if (linhas[j].includes('</url>') || linhas[j].includes('<loc>')) {
+            break;
+          }
+          resultado.push(linhas[j]);
+        }
+        
+        resultado.push('  </url>');
+      } 
+      else if (!linha.includes('<loc>') || 
+               (i > 0 && linhas[i-1].includes('<url>'))) {
+        resultado.push(linha);
+      }
+    }
+    
+    // Juntar tudo
+    let xmlCorrigido = resultado.join('\n');
+    
+    // Remover linhas vazias duplicadas
+    xmlCorrigido = xmlCorrigido.split('\n')
+      .filter((line, index, arr) => {
+        if (line.trim() === '' && arr[index + 1] && arr[index + 1].trim() === '') {
+          return false;
+        }
+        return true;
+      })
+      .join('\n');
+    
+    // Salvar
+    fs.writeFileSync('sitemap.xml', xmlCorrigido, 'utf8');
+    
+    // Contar URLs
+    const count = (xmlCorrigido.match(/<loc>/g) || []).length;
+    console.log(`✅ Sitemap corrigido! ${count} URLs`);
+    
+    return true;
+    
+  } catch (erro) {
+    console.log(`❌ Erro ao corrigir sitemap: ${erro.message}`);
+    return false;
+  }
+}
+
+// ========== FUNÇÕES ORIGINAIS (QUE JÁ FUNCIONAM) ==========
 function encontrarArquivosHTML() {
   const arquivos = [];
   
@@ -57,14 +134,12 @@ function encontrarArquivosHTML() {
         const relativo = path.relative(CONFIG.PASTA_RAIZ, caminhoCompleto).replace(/\\/g, '/');
         
         if (item.isDirectory()) {
-          // PULAR pastas bloqueadas
           if (CONFIG.PASTAS_BLOQUEAR_SITEMAP.includes(item.name)) {
             log(`Ignorando pasta: ${relativo}`, 'warning');
             continue;
           }
           buscar(caminhoCompleto);
         } 
-        // SÓ arquivos index.html
         else if (item.name === 'index.html') {
           arquivos.push({
             caminhoCompleto,
@@ -83,18 +158,15 @@ function encontrarArquivosHTML() {
   return arquivos;
 }
 
-// Verificar se URL deve ser indexada
 function deveIndexar(arquivoInfo) {
   const { caminhoRelativo } = arquivoInfo;
   
-  // 1. Não indexar pastas bloqueadas
   for (const pasta of CONFIG.PASTAS_BLOQUEAR_SITEMAP) {
     if (caminhoRelativo.includes(pasta + '/')) {
       return false;
     }
   }
   
-  // 2. Não indexar URLs da lista de exclusão
   for (const padrao of CONFIG.EXCLUIR_DO_INDEX) {
     if (typeof padrao === 'string' && caminhoRelativo.includes(padrao)) {
       return false;
@@ -104,11 +176,9 @@ function deveIndexar(arquivoInfo) {
     }
   }
   
-  // 3. Só indexar idiomas principais + raiz
   const partes = caminhoRelativo.split('/');
   if (partes.length > 1 && partes[0] !== '') {
     if (!CONFIG.IDIOMAS_PRINCIPAIS.includes(partes[0])) {
-      log(`Ignorando idioma não principal: ${caminhoRelativo}`, 'warning');
       return false;
     }
   }
@@ -116,7 +186,6 @@ function deveIndexar(arquivoInfo) {
   return true;
 }
 
-// Gerar URL correta SEM .html
 function gerarURL(arquivoInfo) {
   const { caminhoRelativo } = arquivoInfo;
   
@@ -128,40 +197,32 @@ function gerarURL(arquivoInfo) {
   return pasta === '.' ? `${CONFIG.SITE_URL}/` : `${CONFIG.SITE_URL}/${pasta}/`;
 }
 
-// Corrigir canonical em UMA página
 function corrigirCanonical(caminhoArquivo, urlCorreta) {
   try {
     const conteudo = fs.readFileSync(caminhoArquivo, 'utf8');
-    
-    // 1. REMOVER TODOS OS NOINDEX
-    let novoConteudo = conteudo
-      .replace(/content\s*=\s*["']noindex[^"']*["']/gi, 'content="index, follow"')
-      .replace(/<meta[^>]*noindex[^>]*>/gi, '');
-    
-    // 2. CORRIGIR/ADICIONAR CANONICAL
     const canonicalCorreto = `<link rel="canonical" href="${urlCorreta}" />`;
     const regexCanonical = /<link[^>]*rel=(["'])canonical\1[^>]*>/gi;
     
-    if (regexCanonical.test(novoConteudo)) {
-      // Substituir canonical existente
-      novoConteudo = novoConteudo.replace(regexCanonical, canonicalCorreto);
-    } else {
-      // Adicionar antes do </head>
-      if (novoConteudo.includes('</head>')) {
-        novoConteudo = novoConteudo.replace('</head>', `  ${canonicalCorreto}\n</head>`);
-      }
+    let novoConteudo = conteudo;
+    
+    // Corrigir noindex
+    if (conteudo.includes('noindex')) {
+      novoConteudo = novoConteudo
+        .replace(/content="noindex,follow"/gi, 'content="index,follow"')
+        .replace(/content="noindex"/gi, 'content="index,follow"');
     }
     
-    // 3. GARANTIR meta robots index,follow
-    const metaRobots = '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />';
+    // Corrigir/Adicionar canonical
+    if (regexCanonical.test(novoConteudo)) {
+      novoConteudo = novoConteudo.replace(regexCanonical, canonicalCorreto);
+    } else if (novoConteudo.includes('</head>')) {
+      novoConteudo = novoConteudo.replace('</head>', `\n  ${canonicalCorreto}\n</head>`);
+    }
+    
+    // Adicionar meta robots
     if (!novoConteudo.includes('name="robots"')) {
+      const metaRobots = '<meta name="robots" content="index, follow, max-image-preview:large" />';
       novoConteudo = novoConteudo.replace('<head>', `<head>\n  ${metaRobots}`);
-    } else {
-      // Atualizar robots existente
-      novoConteudo = novoConteudo.replace(
-        /<meta[^>]*name=(["'])robots\1[^>]*>/gi,
-        metaRobots
-      );
     }
     
     if (novoConteudo !== conteudo) {
@@ -175,14 +236,15 @@ function corrigirCanonical(caminhoArquivo, urlCorreta) {
   }
 }
 
-// CRIAR SITEMAP LIMPO (sem namespace, sem backups)
 function criarSitemapLimpo(arquivosHTML) {
   log('Criando sitemap.xml LIMPO...', 'sitemap');
+  
+  // PRIMEIRO: Corrigir sitemap existente se estiver corrompido
+  fixSitemapCorrompido();
   
   const arquivosIndexar = arquivosHTML.filter(deveIndexar);
   log(`${arquivosIndexar.length} páginas para indexar (de ${arquivosHTML.length} total)`, 'info');
   
-  // Ordenar: homepage primeiro, depois idiomas principais
   arquivosIndexar.sort((a, b) => {
     if (a.caminhoRelativo === 'index.html') return -1;
     if (b.caminhoRelativo === 'index.html') return 1;
@@ -206,7 +268,6 @@ function criarSitemapLimpo(arquivosHTML) {
   arquivosIndexar.forEach((arquivo, index) => {
     const url = gerarURL(arquivo);
     
-    // Prioridade dinâmica
     let priority = '0.7';
     let changefreq = 'monthly';
     
@@ -227,20 +288,14 @@ function criarSitemapLimpo(arquivosHTML) {
     xml += `    <changefreq>${changefreq}</changefreq>\n`;
     xml += `    <priority>${priority}</priority>\n`;
     xml += `  </url>\n`;
-    
-    if ((index + 1) % 10 === 0) {
-      log(`${index + 1}/${arquivosIndexar.length} URLs processadas`, 'info');
-    }
   });
   
   xml += '</urlset>';
   
-  // Salvar sitemap LIMPO
   fs.writeFileSync('sitemap.xml', xml, 'utf8');
   log(`Sitemap criado com ${arquivosIndexar.length} URLs`, 'success');
   
-  // Mostrar estatísticas
-  console.log('\n📊 ESTATÍSTICAS DO SITEMAP:');
+  console.log('\n📊 ESTATÍSTICAS:');
   console.log('='.repeat(50));
   CONFIG.IDIOMAS_PRINCIPAIS.forEach(idioma => {
     const count = arquivosIndexar.filter(a => a.caminhoRelativo.startsWith(idioma + '/')).length;
@@ -250,150 +305,108 @@ function criarSitemapLimpo(arquivosHTML) {
   return arquivosIndexar.length;
 }
 
-// Criar robots.txt otimizado
 function criarRobotsTxt() {
-  const robots = `# robots.txt gerado automaticamente
-User-agent: *
+  const robots = `User-agent: *
 Allow: /
 Disallow: /backup/
 Disallow: /backup_seo/
 Disallow: /backup_seo_recursivo/
-Disallow: /backup_automatico/
 Disallow: /teste/
 Disallow: /test/
 Disallow: /weight-loss-quiz/
-Disallow: /search/
 Disallow: /page/
 
-Sitemap: ${CONFIG.SITE_URL}/sitemap.xml
-
-# Google específico
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Googlebot-Image
-Allow: /
-Disallow: /backup/
-
-# Bing
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 2
-
-# Outros bots
-User-agent: *
-Disallow: /backup/`;
+Sitemap: ${CONFIG.SITE_URL}/sitemap.xml`;
   
   fs.writeFileSync('robots.txt', robots, 'utf8');
-  log('robots.txt criado/atualizado', 'success');
+  log('robots.txt criado', 'success');
 }
 
 // ========== EXECUÇÃO PRINCIPAL ==========
 async function main() {
   console.log('='.repeat(60));
-  console.log('🚨 CORREÇÃO SEO URGENTE - 42 PÁGINAS NÃO INDEXADAS');
+  console.log('🚀 CORREÇÃO SEO - SITEMAP CORROMPIDO FIX');
   console.log('='.repeat(60));
   
-  // 1. ENCONTRAR ARQUIVOS
-  log('Buscando arquivos index.html...', 'info');
+  // 1. Corrigir sitemap primeiro
+  console.log('\n🔧 PASSO 1: Corrigindo sitemap corrompido...');
+  fixSitemapCorrompido();
+  
+  // 2. Buscar arquivos
+  log('PASSO 2: Buscando arquivos...', 'info');
   const arquivos = encontrarArquivosHTML();
   
   if (arquivos.length === 0) {
-    log('Nenhum index.html encontrado!', 'error');
+    log('Nenhum arquivo!', 'error');
     return;
   }
-  log(`Encontrados ${arquivos.length} arquivos index.html`, 'success');
+  log(`Encontrados ${arquivos.length} arquivos`, 'success');
   
-  // 2. CRIAR BACKUP DO SITEMAP ATUAL
+  // 3. Backup sitemap
   if (fs.existsSync('sitemap.xml')) {
     const backupName = `sitemap_backup_${Date.now()}.xml`;
     fs.copyFileSync('sitemap.xml', backupName);
-    log(`Backup do sitemap salvo como: ${backupName}`, 'warning');
+    log(`Backup: ${backupName}`, 'warning');
   }
   
-  // 3. CORRIGIR CANONICAL EM TODOS
-  log('Corrigindo canonical e meta tags...', 'info');
+  // 4. Corrigir canonical
+  log('PASSO 3: Corrigindo canonical...', 'info');
   let corrigidos = 0;
   
   arquivos.forEach((arquivo, index) => {
-    const urlCorreta = gerarURL(arquivo);
-    
-    if (corrigirCanonical(arquivo.caminhoCompleto, urlCorreta)) {
+    if (corrigirCanonical(arquivo.caminhoCompleto, gerarURL(arquivo))) {
       corrigidos++;
-      if (corrigidos <= 10) { // Mostrar apenas primeiros 10
+      if (corrigidos <= 5) {
         log(`✓ ${arquivo.caminhoRelativo}`, 'success');
       }
     }
     
-    if ((index + 1) % 20 === 0) {
-      console.log(`Processados ${index + 1}/${arquivos.length} arquivos...`);
+    if ((index + 1) % 50 === 0) {
+      console.log(`Processados ${index + 1}/${arquivos.length}...`);
     }
   });
   
-  log(`Total corrigidos: ${corrigidos}/${arquivos.length}`, 'success');
+  log(`Corrigidos: ${corrigidos}/${arquivos.length}`, 'success');
   
-  // 4. CRIAR SITEMAP LIMPO
+  // 5. Criar sitemap limpo
   const totalSitemap = criarSitemapLimpo(arquivos);
   
-  // 5. CRIAR ROBOTS.TXT
+  // 6. Criar robots.txt
   criarRobotsTxt();
   
-  // 6. VERIFICAÇÃO RÁPIDA
+  // 7. Verificação
   console.log('\n🔍 VERIFICAÇÃO RÁPIDA:');
   console.log('='.repeat(50));
   
-  const paginasTeste = [
-    'index.html',
-    'en/index.html',
-    'en/keton-aktiv-review/index.html',
-    'pt/index.html',
-    'es/index.html'
-  ];
-  
-  paginasTeste.forEach(pagina => {
+  ['index.html', 'en/index.html', 'pt/index.html', 'es/index.html'].forEach(pagina => {
     const caminho = path.join(CONFIG.PASTA_RAIZ, pagina);
     if (fs.existsSync(caminho)) {
       const conteudo = fs.readFileSync(caminho, 'utf8');
       const url = gerarURL({ caminhoRelativo: pagina });
-      
-      const temCanonical = conteudo.includes(`href="${url}"`);
-      const temNoindex = conteudo.includes('noindex');
-      
-      console.log(`${pagina}:`);
-      console.log(`  Canonical correto? ${temCanonical ? '✅' : '❌'}`);
-      console.log(`  Sem noindex? ${!temNoindex ? '✅' : '❌'}`);
-      console.log(`  URL: ${url}`);
+      const okCanonical = conteudo.includes(`href="${url}"`);
+      const okNoindex = !conteudo.includes('noindex');
+      console.log(`${pagina}: Canonical ${okCanonical ? '✅' : '❌'} | Noindex ${okNoindex ? '✅' : '❌'}`);
     }
   });
   
-  // RELATÓRIO FINAL
+  // RELATÓRIO
   console.log('\n' + '='.repeat(60));
   console.log('📋 RELATÓRIO FINAL');
   console.log('='.repeat(60));
-  console.log(`📁 Arquivos HTML: ${arquivos.length}`);
-  console.log(`🔧 Canonical corrigidos: ${corrigidos}`);
-  console.log(`🗺️ URLs no sitemap: ${totalSitemap}`);
-  console.log(`🤖 robots.txt: Atualizado`);
-  console.log(`📦 Backup sitemap: Criado`);
-  
-  console.log('\n👉 PRÓXIMOS PASSOS URGENTES:');
-  console.log('1. ✅ Commit e push no GitHub');
-  console.log('2. 🌐 Netlify faz deploy automático');
-  console.log('3. 🔍 No Google Search Console:');
-  console.log('   - REMOVER sitemap antigo');
-  console.log('   - ADICIONAR novo: ' + CONFIG.SITE_URL + '/sitemap.xml');
-  console.log('   - INSERIR nova: ' + CONFIG.SITE_URL + '/robots.txt');
-  console.log('   - USAR "Inspeção de URL" em:');
-  console.log('     • ' + CONFIG.SITE_URL + '/');
-  console.log('     • ' + CONFIG.SITE_URL + '/en/');
-  console.log('     • ' + CONFIG.SITE_URL + '/en/keton-aktiv-review/');
-  console.log('4. 📈 Aguardar 3-7 dias para reindexação');
+  console.log(`📁 Arquivos: ${arquivos.length}`);
+  console.log(`🔧 Canonical: ${corrigidos} corrigidos`);
+  console.log(`🗺️ Sitemap: ${totalSitemap} URLs`);
+  console.log(`🤖 robots.txt: OK`);
+  console.log('\n👉 Próximos passos:');
+  console.log('1. git add .');
+  console.log('2. git commit -m "Fix sitemap corrompido + canonical"');
+  console.log('3. git push');
+  console.log('4. Google Search Console: remover/add sitemap.xml');
   console.log('='.repeat(60));
 }
 
-// Executar
+// EXECUTAR
 main().catch(erro => {
-  log(`ERRO: ${erro.message}`, 'error');
+  console.log('❌ ERRO:', erro.message);
   console.error(erro);
 });
