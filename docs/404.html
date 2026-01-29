@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Health and Longevity</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0f7f4, #d9ebe2);
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #e74c3c;
+            font-size: 4em;
+            margin: 0;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin: 20px 0;
+        }
+        
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .back-home {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .back-home:hover {
+            background: #3d8b40;
+        }
+        
+        .search-box {
+            margin: 30px 0;
+        }
+        
+        .search-box input {
+            padding: 10px 20px;
+            width: 300px;
+            border: 2px solid #4CAF50;
+            border-radius: 25px;
+            font-size: 1em;
+        }
+        
+        .search-box button {
+            padding: 10px 25px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .popular-links {
+            text-align: left;
+            margin-top: 30px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .popular-links h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        .popular-links a {
+            display: block;
+            color: #4CAF50;
+            text-decoration: none;
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .popular-links a:hover {
+            color: #3d8b40;
+            padding-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+        <p>The health article or page you're looking for doesn't exist or has been moved.</p>
+        
+        <div class="search-box">
+            <input type="text" id="search404" placeholder="Search health articles...">
+            <button onclick="searchArticles()">🔍 Search</button>
+        </div>
+        
+        <a href="index.html" class="back-home">← Back to Home</a>
+        
+        <div class="popular-links">
+            <h3>Popular Health Articles:</h3>
+            <a href="en/mastering-hearing-health-a-comprehensive-guide-to-prevention-and-care.html">Mastering Hearing Health Guide</a>
+            <a href="en/top-5-anti-aging-hacks.html">Top 5 Anti-Aging Hacks</a>
+            <a href="en/benefits-of-vitamin-c.html">Benefits of Vitamin C</a>
+            <a href="en/best-workout-routines-for-seniors.html">Workout Routines for Seniors</a>
+            <a href="index.html">All Articles</a>
+        </div>
+    </div>
+    
+    <script>
+        function searchArticles() {
+            const term = document.getElementById('search404').value.trim();
+            if (term) {
+                // Redireciona para home com parâmetro de busca
+                window.location.href = `index.html?search=${encodeURIComponent(term)}`;
+            }
+        }
+        
+        // Permitir busca com Enter
+        document.getElementById('search404').addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') searchArticles();
+        });
+        
+        // Se veio de um redirecionamento com termo de busca
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchParam = urlParams.get('search');
+        if (searchParam) {
+            document.getElementById('search404').value = searchParam;
+        }
+    </script>
+</body>
+</html>
