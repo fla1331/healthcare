@@ -9,6 +9,7 @@ let allPosts = [];
 
 // ===== LISTA COMPLETA DE ARTIGOS (USE OS SEUS AQUI) =====
 const ARTICLES_DATABASE = [
+    // Artigo 1 (original, mantido como exemplo ou para ser substituído)
     {
         id: 1,
         title: "Prodentim Review - Complete Review and Honest Analysis",
@@ -20,215 +21,107 @@ const ARTICLES_DATABASE = [
         date: "2024-11-28",
         tags: ["oral health", "probiotics", "dental care"]
     },
+    // ===== SEUS ARTIGOS REAIS COMEÇAM AQUI (a partir do ID 2) =====
     {
         id: 2,
-        title: "Keton Aktiv Review: The Truth About Ketosis and How to Burn Fat Fast",
-        file: "keton-aktiv-review/index.html",
+        title: "Audifort Review: Unveiling the Truth About This Hearing Health Supplement",
+        file: "audifort-review/index.html", // Use apenas UMA versão
         folder: "en/",
-        excerpt: "In-depth review of Keton Aktiv weight loss supplement. Does it really help with ketosis and fat burning? Scientific analysis and user experiences.",
-        category: "Weight Loss",
-        author: "Nutrition & Metabolism Experts",
-        date: "2024-11-27",
-        tags: ["ketosis", "weight loss", "fat burning"]
+        excerpt: "Comprehensive review of the Audifort hearing health supplement. Analyzes its natural ingredients like Ginkgo Biloba and NAC, benefits for hearing clarity and tinnitus, and real user testimonials.",
+        category: "Hearing Health",
+        author: "Health Supplement Review Team",
+        date: "2025-11-22", // Data extraída da URL
+        tags: ["hearing supplement", "tinnitus", "auditory health", "natural ingredients", "ear care"]
     },
     {
         id: 3,
-        title: "Mastering Hearing Health: A Comprehensive Guide to Prevention and Care",
-        file: "mastering-hearing-health-a-comprehensive-guide-to-prevention-and-care/index.html",
+        title: "Brainson Review: Unlocking Your Brain's Full Potential",
+        file: "brainson-review/index.html",
         folder: "en/",
-        excerpt: "Complete guide to maintaining optimal hearing health. Prevention tips, care strategies, and latest research on auditory wellness.",
-        category: "Hearing Health",
-        author: "Auditory Health Specialists",
-        date: "2024-11-26",
-        tags: ["hearing", "auditory health", "prevention"]
+        excerpt: "In-depth analysis of Brainson, a nootropic supplement designed to enhance memory, focus, and mental clarity. Examines key ingredients like Bacopa Monnieri and the science behind cognitive support.",
+        category: "Brain Health",
+        author: "Editorial Team",
+        date: "2025-11-19",
+        tags: ["nootropic", "brain boost", "memory", "focus", "mental clarity"]
     },
     {
         id: 4,
-        title: "Top 5 Anti-Aging Hacks to Boost Your Longevity Today",
-        file: "top-5-anti-aging-hacks/index.html",
+        title: "Mitolyn Review: Unveiling the Truth About This Breakthrough Supplement",
+        file: "mitolyn-review/index.html",
         folder: "en/",
-        excerpt: "Discover scientifically proven strategies to slow down aging and boost longevity. Simple hacks you can implement immediately.",
-        category: "Longevity",
-        author: "Longevity Research Team",
-        date: "2024-11-25",
-        tags: ["anti-aging", "longevity", "wellness"]
+        excerpt: "Detailed review of Mitolyn, a supplement targeting cellular health and energy by supporting mitochondria. Covers ingredients like CoQ10 and PQQ, and their benefits for vitality and aging.",
+        category: "Cellular Health & Longevity",
+        author: "Health and Longevity Team",
+        date: "2025-11-16",
+        tags: ["mitochondria", "cellular energy", "anti-aging", "antioxidant", "coq10"]
     },
     {
         id: 5,
-        title: "The Undeniable Benefits of Daily Vitamin C Intake",
-        file: "benefits-of-vitamin-c/index.html",
+        title: "Nitric Boost Review: Complete Analysis of This Natural Nitric Oxide Supplement",
+        file: "nitric-boost-review-complete-analysis/index.html",
         folder: "en/",
-        excerpt: "Comprehensive guide to Vitamin C benefits for immunity, skin health, and overall wellness. Dosage recommendations and sources.",
-        category: "Nutrition",
-        author: "Nutrition Science Team",
-        date: "2024-11-24",
-        tags: ["vitamin c", "immunity", "nutrition"]
+        excerpt: "Complete breakdown of Nitric Boost, a supplement aimed at enhancing nitric oxide production for better blood flow, athletic performance, and circulation using ingredients like L-Citrulline and Beet Root Extract.",
+        category: "Fitness & Circulation",
+        author: "Review Team",
+        date: "2025-01-17",
+        tags: ["nitric oxide", "blood flow", "workout performance", "circulation", "pre-workout"]
     },
     {
         id: 6,
-        title: "The Best 3 Workout Routines for Seniors",
-        file: "best-workout-routines-for-seniors/index.html",
+        title: "Prostavive Review: Unveiling the Truth About This Prostate Health Supplement",
+        file: "prostavive-review/index.html",
         folder: "en/",
-        excerpt: "Safe and effective exercise routines specifically designed for seniors. Improve mobility, strength, and overall health.",
-        category: "Fitness",
-        author: "Senior Fitness Experts",
-        date: "2024-11-23",
-        tags: ["senior fitness", "exercise", "mobility"]
+        excerpt: "A thorough review of Prostavive, a natural supplement for prostate support. Evaluates ingredients like Saw Palmetto and Beta-Sitosterol for benefits on urinary flow and overall prostate wellness.",
+        category: "Men's Health",
+        author: "Health Review Team",
+        date: "2025-11-17",
+        tags: ["prostate health", "bph", "urinary flow", "saw palmetto", "men's wellness"]
     },
     {
         id: 7,
-        title: "Audifort Review: Unveiling the Truth About This Hearing Health Supplement",
-        file: "audifort-review-unveiling-the-truth-about-this-hearing-health-supplement/index.html",
+        title: "Detailed Analysis: Sleep Lean – The Secret to Losing Weight While You Sleep?",
+        file: "sleep-lean-review/index.html",
         folder: "en/",
-        excerpt: "Detailed review of Audifort hearing health supplement. Analysis of ingredients, benefits, user experiences, and scientific evidence.",
-        category: "Hearing Health",
-        author: "Health Supplement Review Team",
-        date: "2024-11-22",
-        tags: ["hearing supplement", "tinnitus", "auditory support"]
+        excerpt: "Investigates Sleep Lean, a supplement that claims to promote weight loss during sleep by regulating stress hormones and metabolism with ingredients like Ashwagandha and microdosed Melatonin.",
+        category: "Weight Loss & Sleep",
+        author: "Analysis Team",
+        date: "2025-08-23",
+        tags: ["weight loss", "sleep aid", "burn fat", "cortisol", "appetite control"]
     },
     {
         id: 8,
-        title: "Stress Management Techniques That Actually Work",
-        file: "stress-management/index.html",
+        title: "Weight Loss Myths Truth",
+        file: "weight-loss-myths-truth/index.html", // Nome do arquivo inferido
         folder: "en/",
-        excerpt: "Evidence-based stress management techniques for modern life. From mindfulness to lifestyle changes that make a difference.",
-        category: "Mental Health",
-        author: "Mental Wellness Experts",
-        date: "2024-11-21",
-        tags: ["stress", "mental health", "mindfulness"]
+        excerpt: "Debunks common misconceptions surrounding weight loss, separating fact from fiction to provide clearer strategies for effective and sustainable health management.",
+        category: "Weight Loss",
+        author: "Health Education Team",
+        date: "2025-11-25", // Data assumida (ajuste conforme necessário)
+        tags: ["weight loss myths", "diet truth", "fitness facts", "healthy living", "metabolism"]
     },
     {
         id: 9,
-        title: "Vitamin D Deficiency: Symptoms and Solutions",
-        file: "vitamin-d-deficiency/index.html",
+        title: "Natural Ways to Support Prostate Health and Well-Being",
+        file: "natural-ways-to-support-prostate-health-and-well-being/index.html", // Nome do arquivo inferido
         folder: "en/",
-        excerpt: "Complete guide to Vitamin D deficiency: symptoms, risks, testing, and effective solutions for optimal levels.",
-        category: "Nutrition",
-        author: "Vitamin Research Team",
-        date: "2024-11-20",
-        tags: ["vitamin d", "deficiency", "sunlight"]
+        excerpt: "Explores natural methods, lifestyle changes, and supportive nutrients for maintaining prostate health and preventing common issues as men age.",
+        category: "Men's Health",
+        author: "Wellness Guides Team",
+        date: "2025-11-24", // Data assumida
+        tags: ["prostate support", "natural remedies", "men's health", "healthy aging", "nutrition"]
     },
     {
         id: 10,
-        title: "How to Improve Sleep Quality Naturally",
-        file: "improve-sleep-quality/index.html",
+        title: "Mastering Hearing Health: A Comprehensive Guide to Prevention and Care",
+        file: "mastering-hearing-health-a-comprehensive-guide-to-prevention-and-care/index.html",
         folder: "en/",
-        excerpt: "Natural methods to improve sleep quality without medication. Sleep hygiene, relaxation techniques, and lifestyle adjustments.",
-        category: "Sleep Health",
-        author: "Sleep Science Team",
-        date: "2024-11-19",
-        tags: ["sleep", "insomnia", "rest"]
-    },
-    {
-        id: 11,
-        title: "The Power of Omega-3 for Brain Health",
-        file: "omega-3-brain-health/index.html",
-        folder: "en/",
-        excerpt: "How Omega-3 fatty acids support brain function, memory, and cognitive health throughout life.",
-        category: "Brain Health",
-        author: "Neuroscience Research Team",
-        date: "2024-11-18",
-        tags: ["omega-3", "brain health", "cognitive function"]
-    },
-    {
-        id: 12,
-        title: "Natural Ways to Lower Blood Pressure",
-        file: "natural-lower-blood-pressure/index.html",
-        folder: "en/",
-        excerpt: "Effective natural strategies to manage and lower blood pressure without medication.",
-        category: "Heart Health",
-        author: "Cardiovascular Health Team",
-        date: "2024-11-17",
-        tags: ["blood pressure", "heart health", "hypertension"]
-    },
-    {
-        id: 13,
-        title: "Gut Health: The Foundation of Overall Wellness",
-        file: "gut-health-foundation/index.html",
-        folder: "en/",
-        excerpt: "Why gut health is crucial for immunity, mood, and overall health. How to improve your gut microbiome.",
-        category: "Digestive Health",
-        author: "Gut Health Specialists",
-        date: "2024-11-16",
-        tags: ["gut health", "microbiome", "digestion"]
-    },
-    {
-        id: 14,
-        title: "Blue Light Exposure: Effects and Protection",
-        file: "blue-light-effects-protection/index.html",
-        folder: "en/",
-        excerpt: "Understanding blue light effects on sleep and eyesight, and how to protect yourself effectively.",
-        category: "Eye Health",
-        author: "Vision Care Experts",
-        date: "2024-11-15",
-        tags: ["blue light", "eye health", "sleep"]
-    },
-    {
-        id: 15,
-        title: "Intermittent Fasting for Beginners",
-        file: "intermittent-fasting-beginners/index.html",
-        folder: "en/",
-        excerpt: "Complete beginner's guide to intermittent fasting. Methods, benefits, and common mistakes to avoid.",
-        category: "Nutrition",
-        author: "Fasting Research Team",
-        date: "2024-11-14",
-        tags: ["intermittent fasting", "weight loss", "metabolism"]
-    },
-    {
-        id: 16,
-        title: "The Benefits of Strength Training After 50",
-        file: "strength-training-after-50/index.html",
-        folder: "en/",
-        excerpt: "Why strength training is essential after 50 and how to do it safely for maximum benefits.",
-        category: "Fitness",
-        author: "Senior Fitness Specialists",
-        date: "2024-11-13",
-        tags: ["strength training", "aging", "muscle mass"]
-    },
-    {
-        id: 17,
-        title: "Natural Allergy Relief Remedies",
-        file: "natural-allergy-relief/index.html",
-        folder: "en/",
-        excerpt: "Effective natural remedies to relieve allergy symptoms without harsh medications.",
-        category: "Allergy",
-        author: "Natural Health Team",
-        date: "2024-11-12",
-        tags: ["allergies", "natural remedies", "immune system"]
-    },
-    {
-        id: 18,
-        title: "The Science of Hydration",
-        file: "science-of-hydration/index.html",
-        folder: "en/",
-        excerpt: "How proper hydration affects every aspect of your health and performance.",
-        category: "Nutrition",
-        author: "Hydration Research Team",
-        date: "2024-11-11",
-        tags: ["hydration", "water", "health"]
-    },
-    {
-        id: 19,
-        title: "Managing Arthritis Pain Naturally",
-        file: "managing-arthritis-pain/index.html",
-        folder: "en/",
-        excerpt: "Natural approaches to manage arthritis pain and improve joint health.",
-        category: "Joint Health",
-        author: "Arthritis Care Team",
-        date: "2024-11-10",
-        tags: ["arthritis", "joint pain", "natural pain relief"]
-    },
-    {
-        id: 20,
-        title: "The Mediterranean Diet: Complete Guide",
-        file: "mediterranean-diet-guide/index.html",
-        folder: "en/",
-        excerpt: "Everything you need to know about the Mediterranean diet for longevity and heart health.",
-        category: "Nutrition",
-        author: "Dietary Science Team",
-        date: "2024-11-09",
-        tags: ["mediterranean diet", "heart health", "longevity"]
+        excerpt: "A complete guide to maintaining optimal hearing health, covering prevention strategies, daily care tips, and how to protect your ears from age-related decline and environmental damage.",
+        category: "Hearing Health",
+        author: "Auditory Health Specialists",
+        date: "2025-11-26", // Data extraída da URL
+        tags: ["hearing protection", "ear care", "prevention", "auditory wellness", "hearing loss"]
     }
+    // O artigo duplicado "audifort-review-unleash-your-hearing-potential" e o 404 foram removidos.
     // PARA ADICIONAR MAIS ARTIGOS: copie o bloco acima e edite
 ];
 
