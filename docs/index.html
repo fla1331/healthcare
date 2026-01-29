@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health and Longevity - English Articles</title>
+    <title>Health and Longevity - Evidence-Based Health Insights</title>
+    <meta name="description" content="Your comprehensive guide to wellness, longevity, and evidence-based health insights. Reviews, guides, and analysis of health supplements and strategies.">
     <style>
         :root {
             --primary-color: #2c5530;
@@ -51,7 +52,6 @@
             width: 120px;
             height: 120px;
             margin: 0 auto 1.5rem;
-
             border-radius: 50%;
             padding: 15px;
             box-shadow: var(--shadow);
@@ -136,24 +136,6 @@
             box-shadow: var(--shadow-hover);
         }
 
-        .post-card.featured-post {
-            border: 2px solid var(--accent-color);
-            position: relative;
-        }
-
-        .featured-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--accent-color);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 1;
-        }
-
         .post-header {
             padding: 20px 20px 0;
             display: flex;
@@ -171,12 +153,6 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-
-        .post-readtime {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            font-weight: 500;
         }
 
         .post-content {
@@ -211,6 +187,21 @@
             overflow: hidden;
         }
 
+        .post-tags {
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f0f7ff;
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
         .post-meta {
             display: flex;
             justify-content: space-between;
@@ -232,9 +223,8 @@
             font-size: 1rem;
         }
 
-        .post-footer {
-            padding-top: 15px;
-            border-top: 1px solid var(--border-color);
+        .post-actions {
+            margin-top: 20px;
         }
 
         .read-more-btn {
@@ -254,115 +244,6 @@
         .read-more-btn:hover {
             background: var(--primary-color);
             transform: translateX(5px);
-        }
-
-        /* Pagination */
-        .pagination-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin: 4rem 0;
-            flex-wrap: wrap;
-        }
-
-        .pagination-btn {
-            padding: 12px 25px;
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 25px;
-            font-weight: 600;
-            color: var(--primary-color);
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .pagination-btn:hover {
-            border-color: var(--secondary-color);
-            background: var(--secondary-color);
-            color: white;
-        }
-
-        .page-numbers {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .page-number {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--border-color);
-            border-radius: 50%;
-            background: var(--card-bg);
-            color: var(--text-color);
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .page-number.active {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .page-number:hover:not(.active) {
-            border-color: var(--secondary-color);
-            color: var(--secondary-color);
-        }
-
-        .page-dots {
-            padding: 0 5px;
-            color: var(--text-light);
-        }
-
-        /* No Results */
-        .no-results {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-        }
-
-        .no-results-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
-
-        .no-results h3 {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .no-results p {
-            color: var(--text-light);
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
         }
 
         /* Footer */
@@ -419,52 +300,13 @@
                 font-size: 1.8rem;
             }
             
-            .pagination-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .page-numbers {
-                order: 2;
-            }
-            
-            .prev-btn {
-                order: 1;
-            }
-            
-            .next-btn {
-                order: 3;
-            }
-            
             .footer-content {
                 flex-direction: column;
                 text-align: center;
             }
         }
-
-        /* Loading Animation */
-        .loading {
-            text-align: center;
-            padding: 60px;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--border-color);
-            border-top: 5px solid var(--secondary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
     </style>
-
-  <link rel="canonical" href="https://healthandlongevity.reviewnexus.blog/" />
+    <link rel="canonical" href="https://healthandlongevity.reviewnexus.blog/" />
 </head>
 <body>
     <!-- Header -->
@@ -482,27 +324,332 @@
     <main class="container">
         <div class="blog-header">
             <h2 class="blog-title">Articles & Reviews</h2>
-            <div class="results-info" id="resultsInfo">
-                Loading articles...
+            
+        </div>
+
+        <!-- Posts Grid with Static Content -->
+        <div id="postsGrid" class="posts-grid">
+            
+            <!-- Article 1 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <span class="post-category">Hearing Health</span>
+                </div>
+                <div class="post-content">
+                    <h3 class="post-title">
+                        <a href="en/audifort-review/index.html">Audifort Review: Unveiling the Truth About This Hearing Health Supplement</a>
+                    </h3>
+                    <p class="post-excerpt">Comprehensive review of the Audifort hearing health supplement. Analyzes its natural ingredients like Ginkgo Biloba and NAC, benefits for hearing clarity and tinnitus, and real user testimonials.</p>
+                    <div class="post-tags">
+                        <span class="tag">#hearing supplement</span>
+                        <span class="tag">#tinnitus</span>
+                        <span class="tag">#natural ingredients</span>
+                        <span class="tag">#ear care</span>
+                    </div>
+                    <div class="post-meta">
+                        <div class="post-author">
+                            <span class="author-icon">👤</span>
+                            <span>Health Supplement Review Team</span>
+                        </div>
+                        <div class="post-date">
+                            <span class="date-icon">📅</span>
+                            <span>Nov 22, 2025</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <a href="en/audifort-review/index.html" class="read-more-btn">Read Full Article →</a>
+                    </div>
+                </div>
             </div>
+            
+            <!-- Article 2 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <span class="post-category">Brain Health</span>
+                </div>
+                <div class="post-content">
+                    <h3 class="post-title">
+                        <a href="en/brainson-review/index.html">Brainson Review: Unlocking Your Brain's Full Potential</a>
+                    </h3>
+                    <p class="post-excerpt">In-depth analysis of Brainson, a nootropic supplement designed to enhance memory, focus, and mental clarity. Examines key ingredients like Bacopa Monnieri and the science behind cognitive support.</p>
+                    <div class="post-tags">
+                        <span class="tag">#nootropic</span>
+                        <span class="tag">#brain boost</span>
+                        <span class="tag">#memory</span>
+                        <span class="tag">#focus</span>
+                    </div>
+                    <div class="post-meta">
+                        <div class="post-author">
+                            <span class="author-icon">👤</span>
+                            <span>Editorial Team</span>
+                        </div>
+                        <div class="post-date">
+                            <span class="date-icon">📅</span>
+                            <span>Nov 19, 2025</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <a href="en/brainson-review/index.html" class="read-more-btn">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 3 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <span class="post-category">Cellular Health & Longevity</span>
+                </div>
+                <div class="post-content">
+                    <h3 class="post-title">
+                        <a href="en/mitolyn-review/index.html">Mitolyn Review: Unveiling the Truth About This Breakthrough Supplement</a>
+                    </h3>
+                    <p class="post-excerpt">Detailed review of Mitolyn, a supplement targeting cellular health and energy by supporting mitochondria. Covers ingredients like CoQ10 and PQQ, and their benefits for vitality and aging.</p>
+                    <div class="post-tags">
+                        <span class="tag">#mitochondria</span>
+                        <span class="tag">#cellular energy</span>
+                        <span class="tag">#anti-aging</span>
+                        <span class="tag">#coq10</span>
+                    </div>
+                    <div class="post-meta">
+                        <div class="post-author">
+                            <span class="author-icon">👤</span>
+                            <span>Health and Longevity Team</span>
+                        </div>
+                        <div class="post-date">
+                            <span class="date-icon">📅</span>
+                            <span>Nov 16, 2025</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <a href="en/mitolyn-review/index.html" class="read-more-btn">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 4 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <span class="post-category">Fitness & Circulation</span>
+                </div>
+                <div class="post-content">
+                    <h3 class="post-title">
+                        <a href="en/nitric-boost-review-complete-analysis/index.html">Nitric Boost Review: Complete Analysis of This Natural Nitric Oxide Supplement</a>
+                    </h3>
+                    <p class="post-excerpt">Complete breakdown of Nitric Boost, a supplement aimed at enhancing nitric oxide production for better blood flow, athletic performance, and circulation using ingredients like L-Citrulline and Beet Root Extract.</p>
+                    <div class="post-tags">
+                        <span class="tag">#nitric oxide</span>
+                        <span class="tag">#blood flow</span>
+                        <span class="tag">#workout performance</span>
+                        <span class="tag">#circulation</span>
+                    </div>
+                    <div class="post-meta">
+                        <div class="post-author">
+                            <span class="author-icon">👤</span>
+                            <span>Review Team</span>
+                        </div>
+                        <div class="post-date">
+                            <span class="date-icon">📅</span>
+                            <span>Jan 17, 2025</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <a href="en/nitric-boost-review-complete-analysis/index.html" class="read-more-btn">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 5 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <span class="post-category">Men's Health</span>
+                </div>
+                <div class="post-content">
+                    <h3 class="post-title">
+                        <a href="en/prostavive-review/index.html">Prostavive Review: Unveiling the Truth About This Prostate Health Supplement</a>
+                    </h3>
+                    <p class="post-excerpt">A thorough review of Prostavive, a natural supplement for prostate support. Evaluates ingredients like Saw Palmetto and Beta-Sitosterol for benefits on urinary flow and overall prostate wellness.</p>
+                    <div class="post-tags">
+                        <span class="tag">#prostate health</span>
+                        <span class="tag">#bph</span>
+                        <span class="tag">#urinary flow</span>
+                        <span class="tag">#saw palmetto</span>
+                    </div>
+                    <div class="post-meta">
+                        <div class="post-author">
+                            <span class="author-icon">👤</span>
+                            <span>Health Review Team</span>
+                        </div>
+                        <div class="post-date">
+                            <span class="date-icon">📅</span>
+                            <span>Nov 17, 2025</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <a href="en/prostavive-review/index.html" class="read-more-btn">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 6 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <span class="post-category">Weight Loss & Sleep</span>
+                </div>
+                <div class="post-content">
+                    <h3 class="post-title">
+                        <a href="en/sleep-lean-review/index.html">Detailed Analysis: Sleep Lean – The Secret to Losing Weight While You Sleep?</a>
+                    </h3>
+                    <p class="post-excerpt">Investigates Sleep Lean, a supplement that claims to promote weight loss during sleep by regulating stress hormones and metabolism with ingredients like Ashwagandha and microdosed Melatonin.</p>
+                    <div class="post-tags">
+                        <span class="tag">#weight loss</span>
+                        <span class="tag">#sleep aid</span>
+                        <span class="tag">#burn fat</span>
+                        <span class="tag">#cortisol</span>
+                    </div>
+                    <div class="post-meta">
+                        <div class="post-author">
+                            <span class="author-icon">👤</span>
+                            <span>Analysis Team</span>
+                        </div>
+                        <div class="post-date">
+                            <span class="date-icon">📅</span>
+                            <span>Aug 23, 2025</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <a href="en/sleep-lean-review/index.html" class="read-more-btn">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 7 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <span class="post-category">Weight Loss</span>
+                </div>
+                <div class="post-content">
+                    <h3 class="post-title">
+                        <a href="en/weight-loss-myths-truth/index.html">Weight Loss Myths Truth</a>
+                    </h3>
+                    <p class="post-excerpt">Debunks common misconceptions surrounding weight loss, separating fact from fiction to provide clearer strategies for effective and sustainable health management.</p>
+                    <div class="post-tags">
+                        <span class="tag">#weight loss myths</span>
+                        <span class="tag">#diet truth</span>
+                        <span class="tag">#fitness facts</span>
+                        <span class="tag">#healthy living</span>
+                    </div>
+                    <div class="post-meta">
+                        <div class="post-author">
+                            <span class="author-icon">👤</span>
+                            <span>Health Education Team</span>
+                        </div>
+                        <div class="post-date">
+                            <span class="date-icon">📅</span>
+                            <span>Nov 25, 2025</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <a href="en/weight-loss-myths-truth/index.html" class="read-more-btn">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 8 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <span class="post-category">Men's Health</span>
+                </div>
+                <div class="post-content">
+                    <h3 class="post-title">
+                        <a href="en/natural-ways-to-support-prostate-health-and-well-being/index.html">Natural Ways to Support Prostate Health and Well-Being</a>
+                    </h3>
+                    <p class="post-excerpt">Explores natural methods, lifestyle changes, and supportive nutrients for maintaining prostate health and preventing common issues as men age.</p>
+                    <div class="post-tags">
+                        <span class="tag">#prostate support</span>
+                        <span class="tag">#natural remedies</span>
+                        <span class="tag">#men's health</span>
+                        <span class="tag">#healthy aging</span>
+                    </div>
+                    <div class="post-meta">
+                        <div class="post-author">
+                            <span class="author-icon">👤</span>
+                            <span>Wellness Guides Team</span>
+                        </div>
+                        <div class="post-date">
+                            <span class="date-icon">📅</span>
+                            <span>Nov 24, 2025</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <a href="en/natural-ways-to-support-prostate-health-and-well-being/index.html" class="read-more-btn">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 9 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <span class="post-category">Hearing Health</span>
+                </div>
+                <div class="post-content">
+                    <h3 class="post-title">
+                        <a href="en/mastering-hearing-health-a-comprehensive-guide-to-prevention-and-care/index.html">Mastering Hearing Health: A Comprehensive Guide to Prevention and Care</a>
+                    </h3>
+                    <p class="post-excerpt">A complete guide to maintaining optimal hearing health, covering prevention strategies, daily care tips, and how to protect your ears from age-related decline and environmental damage.</p>
+                    <div class="post-tags">
+                        <span class="tag">#hearing protection</span>
+                        <span class="tag">#ear care</span>
+                        <span class="tag">#prevention</span>
+                        <span class="tag">#hearing loss</span>
+                    </div>
+                    <div class="post-meta">
+                        <div class="post-author">
+                            <span class="author-icon">👤</span>
+                            <span>Auditory Health Specialists</span>
+                        </div>
+                        <div class="post-date">
+                            <span class="date-icon">📅</span>
+                            <span>Nov 26, 2025</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <a href="en/mastering-hearing-health-a-comprehensive-guide-to-prevention-and-care/index.html" class="read-more-btn">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 10 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <span class="post-category">Dental Health</span>
+                </div>
+                <div class="post-content">
+                    <h3 class="post-title">
+                        <a href="en/prodentim-review/index.html">Prodentim Review - Complete Review and Honest Analysis</a>
+                    </h3>
+                    <p class="post-excerpt">Comprehensive analysis of Prodentim dental health supplement. Expert review of ingredients and effectiveness for oral microbiome support.</p>
+                    <div class="post-tags">
+                        <span class="tag">#oral health</span>
+                        <span class="tag">#probiotics</span>
+                        <span class="tag">#dental care</span>
+                    </div>
+                    <div class="post-meta">
+                        <div class="post-author">
+                            <span class="author-icon">👤</span>
+                            <span>Dental Health Research Team</span>
+                        </div>
+                        <div class="post-date">
+                            <span class="date-icon">📅</span>
+                            <span>Nov 28, 2024</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <a href="en/prodentim-review/index.html" class="read-more-btn">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-
-        <!-- Loading State -->
-        <div id="loadingState" class="loading">
-            <div class="spinner"></div>
-            <p>Loading articles from /en/ folder...</p>
-        </div>
-
-        <!-- Posts Grid -->
-        <div id="postsGrid" class="posts-grid" style="display: none;">
-            <!-- Posts serão inseridos aqui pelo JavaScript -->
-        </div>
-
-        <!-- Pagination -->
-        <div id="pagination" class="pagination-container"></div>
-
-
-       
     </main>
 
     <!-- Footer -->
@@ -523,93 +670,6 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
-        // Inicializar quando o DOM estiver pronto
-        document.addEventListener('DOMContentLoaded', async function() {
-            const loadingState = document.getElementById('loadingState');
-            const postsGrid = document.getElementById('postsGrid');
-            
-            // Carregar o script do blog
-            try {
-                // Adicionar um pequeno delay para efeito visual
-                await new Promise(resolve => setTimeout(resolve, 800));
-                
-                // Carregar o blog.js
-                await loadScript('assets/js/blog.js');
-                
-                // Inicializar o blog
-                if (typeof initBlog === 'function') {
-                    await initBlog();
-                    
-                    // Esconder loading e mostrar posts
-                    loadingState.style.display = 'none';
-                    postsGrid.style.display = 'grid';
-                    
-                    // Destacar artigos em destaque
-                    highlightFeaturedPosts();
-                }
-            } catch (error) {
-                console.error('Error loading blog:', error);
-                loadingState.innerHTML = `
-                    <div style="color: #d32f2f;">
-                        <p style="font-size: 3rem;">⚠️</p>
-                        <h3>Error Loading Articles</h3>
-                        <p>Please check your internet connection and try again.</p>
-                        <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer;">
-                            Retry
-                        </button>
-                    </div>
-                `;
-            }
-        });
-
-        // Função para carregar script dinamicamente
-        function loadScript(src) {
-            return new Promise((resolve, reject) => {
-                const script = document.createElement('script');
-                script.src = src;
-                script.onload = resolve;
-                script.onerror = reject;
-                document.head.appendChild(script);
-            });
-        }
-
-        // Destacar artigos em destaque (opcional)
-        function highlightFeaturedPosts() {
-            const featuredGrid = document.getElementById('featuredGrid');
-            if (!featuredGrid) return;
-            
-            // Filtra apenas os artigos destacados
-            const featuredPosts = window.allPosts ? window.allPosts.filter(post => post.featured) : [];
-            
-            if (featuredPosts.length === 0) return;
-            
-            let html = '';
-            featuredPosts.slice(0, 3).forEach(post => {
-                html += `
-                    <div class="post-card featured-post">
-                        <div class="featured-badge">⭐ Featured</div>
-                        <div class="post-header">
-                            <span class="post-category">${post.category || 'FEATURED'}</span>
-                        </div>
-                        <div class="post-content">
-                            <h3 class="post-title">
-                                <a href="${post.url}">${post.title}</a>
-                            </h3>
-                            <p class="post-excerpt">${post.excerpt}</p>
-                            <div class="post-footer">
-                                <a href="${post.url}" class="read-more-btn">
-                                    Read Now →
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            featuredGrid.innerHTML = html;
-        }
-    </script>
+    <!-- No JavaScript needed for basic functionality -->
 </body>
 </html>
