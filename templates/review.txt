@@ -1,0 +1,36 @@
+# TEMPLATE PARA REVIEW - {PRODUTO}
+
+## INFORMAÇÕES BÁSICAS:
+- PRODUTO: {PRODUTO}
+- CATEGORIA: {CATEGORIA}
+- IDIOMA: {IDIOMA}
+- ANO: {ANO_ATUAL}
+- SITE OFICIAL: {SITE_OFICIAL}
+- LINK AFILIADO: {LINK_AFILIADO}
+
+## ESTRUTURA DO REVIEW:
+1. INTRODUÇÃO ATRAENTE
+2. ESPECIFICAÇÕES TÉCNICAS (tabela HTML)
+3. ANÁLISE DE DESIGN E QUALIDADE
+4. TESTES E PERFORMANCE PRÁTICA
+5. PRÓS E CONTRAS HONESTOS
+6. COMPARAÇÃO COM CONCORRENTES
+7. ANÁLISE DE CUSTO-BENEFÍCIO
+8. PARA QUEM É RECOMENDADO
+9. FAQ COMPLETO (6-8 perguntas)
+10. ONDE COMPRAR
+
+## TOM E ESTILO:
+- Profissional mas acessível
+- Imparcial (mostre prós e contras)
+- Informativo e prático
+- Confiável e honesto
+
+## REQUISITOS TÉCNICOS:
+- HTML válido pronto para publicação
+- Use tags semânticas (h2, h3, p, ul, li, table, etc.)
+- Links com atributos rel="nofollow" ou "nofollow sponsored"
+- Otimizado para SEO
+- Conteúdo 100% em {IDIOMA}
+
+Retorne APENAS o HTML completo do artigo, sem comentários extras.

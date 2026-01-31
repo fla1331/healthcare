@@ -1,0 +1,34 @@
+# TEMPLATE PARA PRE-LANDING PAGE - {PRODUTO}
+
+## INFORMAÇÕES BÁSICAS:
+- PRODUTO: {PRODUTO}
+- CATEGORIA: {CATEGORIA}
+- IDIOMA: {IDIOMA}
+- ANO: {ANO_ATUAL}
+- LINK PRINCIPAL: {LINK_AFILIADO}
+
+## ESTRUTURA DA PRE-LANDING:
+1. TÍTULO IMPACTANTE (focado na dor)
+2. AMPLIFICAÇÃO DO PROBLEMA
+3. APRESENTAÇÃO DA SOLUÇÃO ({PRODUTO})
+4. BENEFÍCIOS EMOCIONAIS E RACIONAIS
+5. PROVA SOCIAL (depoimentos)
+6. DIFERENCIAIS COMPETITIVOS
+7. OFERTA IRRECUSÁVEL (desconto + bônus)
+8. CHAMADA PARA AÇÃO
+9. GARANTIA E SEGURANÇA
+10. FAQ ANTIOBJEÇÕES
+
+## TÉCNICAS DE PERSUASÃO:
+- Gatilhos mentais (urgência, escassez, prova social)
+- Copywriting emocional
+- Storytelling persuasivo
+- Foco na transformação
+
+## TOM E ESTILO:
+- Persuasivo e urgente
+- Empático e compreensivo
+- Confiante e autoritário
+- Claro e direto
+
+Retorne APENAS o HTML completo da pre-landing, sem comentários extras.
